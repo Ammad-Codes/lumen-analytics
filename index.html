@@ -1,0 +1,1765 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Lumen Analytics — AI Analytics Platform</title>
+  <meta name="description" content="Lumen turns raw data into decisions. Ask questions in plain English and get instant, explained insights from every source you connect." />
+  <link rel="canonical" href="https://ammad-codes.github.io/lumen-analytics/" />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#140F2B" media="(prefers-color-scheme: dark)" />
+  <meta name="theme-color" content="#FFF7FB" media="(prefers-color-scheme: light)" />
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:title" content="Lumen Analytics — AI Analytics Platform" />
+  <meta property="og:description" content="Ask questions in plain English and get instant, explained insights from your data." />
+  <meta property="og:url" content="https://ammad-codes.github.io/lumen-analytics/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Lumen Analytics" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Lumen Analytics — AI Analytics Platform" />
+  <meta name="twitter:description" content="Ask questions in plain English and get instant, explained insights." />
+
+  <!-- Favicon: inline SVG bubble "L" mark (no external file needed, so nothing 404s) -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23FF9EC7'/%3E%3Cstop offset='.5' stop-color='%23C4A7FF'/%3E%3Cstop offset='1' stop-color='%239FD8FF'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='16' cy='16' r='15' fill='url(%23g)'/%3E%3Ccircle cx='11' cy='10' r='3' fill='%23fff' opacity='.85'/%3E%3Cpath d='M12 9v13h9' fill='none' stroke='%232A1B4A' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E" />
+  <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23C4A7FF'/%3E%3Cpath d='M12 9v13h9' fill='none' stroke='%232A1B4A' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E" />
+  <!-- Web manifest inlined as a data URI so the file stays fully standalone -->
+  <link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%22Lumen%20Analytics%22%2C%22short_name%22%3A%22Lumen%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%23140F2B%22%2C%22theme_color%22%3A%22%23140F2B%22%7D" />
+
+  <!-- Fonts: preconnect + preload, font-display: swap -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" />
+
+  <!-- Theme: applied before paint to avoid a flash of the wrong theme -->
+  <script>
+    (function () {
+      try {
+        var saved = localStorage.getItem('lumen-theme');
+        var prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+        var theme = saved || (prefersLight ? 'light' : 'dark');
+        document.documentElement.setAttribute('data-theme', theme);
+      } catch (e) {}
+    })();
+  </script>
+
+  <!-- Tailwind CDN with custom config -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['Sora', 'system-ui', 'sans-serif'],
+            body: ['Inter', 'system-ui', 'sans-serif'],
+          },
+          colors: {
+            bubble: { pink: '#FF9EC7', lavender: '#C4A7FF', sky: '#9FD8FF', mint: '#A7F3D0', peach: '#FFC9A8' },
+            cta: { from: '#DB2777', to: '#7C3AED' },
+          },
+          keyframes: {
+            spin: { to: { transform: 'rotate(360deg)' } },
+            float: {
+              '0%, 100%': { transform: 'translateY(0)' },
+              '50%': { transform: 'translateY(-10px)' },
+            },
+            shine: {
+              '0%': { transform: 'translateX(-120%)' },
+              '100%': { transform: 'translateX(120%)' },
+            },
+          },
+          animation: {
+            'spin-slow': 'spin 6s linear infinite',
+            float: 'float 6s ease-in-out infinite',
+            shine: 'shine 1.1s cubic-bezier(0.22, 1, 0.36, 1)',
+          },
+        },
+      },
+    };
+  </script>
+
+  <!-- JSON-LD structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Lumen Analytics",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Web",
+    "url": "https://ammad-codes.github.io/lumen-analytics/",
+    "description": "AI analytics platform: ask questions in plain English and get instant, explained insights from every data source you connect.",
+    "offers": { "@type": "AggregateOffer", "lowPrice": "0", "highPrice": "79", "priceCurrency": "USD" },
+    "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.9", "reviewCount": "1280" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "Do I need to know SQL to use Lumen?", "acceptedAnswer": { "@type": "Answer", "text": "No. You ask questions in plain English and Lumen writes, runs and explains the query for you. Analysts can always open and edit the generated SQL." } },
+      { "@type": "Question", "name": "How long does setup take?", "acceptedAnswer": { "@type": "Answer", "text": "Most teams connect their first source and get answers in under ten minutes. No engineering ticket required." } },
+      { "@type": "Question", "name": "Is my data used to train AI models?", "acceptedAnswer": { "@type": "Answer", "text": "Never. Your data stays in your workspace, is encrypted at rest and in transit, and is never used to train shared models." } },
+      { "@type": "Question", "name": "Can I cancel anytime?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Plans are month-to-month or yearly, and you can downgrade or cancel from settings in two clicks." } },
+      { "@type": "Question", "name": "Do you offer discounts for startups and nonprofits?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Eligible startups and registered nonprofits get 50% off Pro for the first year." } }
+    ]
+  }
+  </script>
+
+  <style>
+    /* ============================================================
+       1. DESIGN TOKENS — one attribute (data-theme) swaps the whole theme
+       ============================================================ */
+    :root {
+      --bg: #140F2B;               /* deep plum / indigo night */
+      --bg-2: #1C1540;
+      --surface: rgba(255, 255, 255, 0.06);
+      --surface-strong: rgba(255, 255, 255, 0.1);
+      --text: #F7F2FF;
+      --muted: #C9BFE6;            /* 9.8:1 on --bg */
+      --border: rgba(214, 196, 255, 0.18);
+      --pink: #FF9EC7;
+      --lavender: #C4A7FF;
+      --sky: #9FD8FF;
+      --mint: #A7F3D0;
+      --peach: #FFC9A8;
+      --accent: #FF9EC7;           /* highlight text, icons, badges */
+      --accent-2: #C4A7FF;
+      --cta-from: #DB2777;         /* white text: AA on both stops */
+      --cta-to: #7C3AED;
+      --cta: linear-gradient(120deg, var(--cta-from), var(--cta-to));
+      --glow: rgba(236, 72, 153, 0.45);
+      --bubble-alpha: 0.55;
+      --soap: linear-gradient(120deg, #FF9EC7 0%, #C4A7FF 45%, #9FD8FF 100%);
+      --shadow: 0 30px 60px -30px rgba(5, 0, 25, 0.8);
+      --radius: 22px;
+      --ease: cubic-bezier(0.22, 1, 0.36, 1);
+      color-scheme: dark;
+    }
+    [data-theme="light"] {
+      --bg: #FFF7FB;               /* creamy pastel */
+      --bg-2: #F6EEFF;
+      --surface: rgba(255, 255, 255, 0.62);
+      --surface-strong: rgba(255, 255, 255, 0.85);
+      --text: #2A1B4A;             /* 14:1 on --bg */
+      --muted: #5B4D78;            /* 7.4:1 on --bg */
+      --border: rgba(124, 58, 237, 0.16);
+      --accent: #BE185D;           /* darker pink for AA text on cream */
+      --accent-2: #6D28D9;
+      --glow: rgba(219, 39, 119, 0.28);
+      --bubble-alpha: 0.7;
+      --soap: linear-gradient(120deg, #DB2777 0%, #7C3AED 50%, #0369A1 100%);
+      --shadow: 0 30px 60px -30px rgba(90, 40, 140, 0.35);
+      color-scheme: light;
+    }
+
+    /* ============================================================
+       2. BASE
+       ============================================================ */
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 90px; -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0; font-family: 'Inter', system-ui, sans-serif; color: var(--text); background: var(--bg);
+      line-height: 1.6; overflow-x: hidden; min-height: 100dvh;
+      -webkit-font-smoothing: antialiased; transition: background-color 0.5s var(--ease), color 0.5s var(--ease);
+      padding-left: env(safe-area-inset-left); padding-right: env(safe-area-inset-right);
+    }
+    body.no-scroll { overflow: hidden; }
+    h1, h2, h3, h4 { font-family: 'Sora', system-ui, sans-serif; letter-spacing: -0.025em; line-height: 1.1; text-wrap: balance; margin: 0; }
+    p { text-wrap: pretty; margin: 0; }
+    a { color: inherit; }
+    img, svg { max-width: 100%; }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+    ::selection { background: var(--pink); color: #2A1B4A; }
+
+    /* Fluid type scale with clamp() */
+    .h1 { font-size: clamp(2.3rem, 6.2vw, 4.6rem); font-weight: 700; }
+    .h2 { font-size: clamp(1.8rem, 4.2vw, 3rem); font-weight: 700; }
+    .lead { font-size: clamp(1.02rem, 1.6vw, 1.2rem); color: var(--muted); }
+    .soap-text {
+      background: var(--soap); -webkit-background-clip: text; background-clip: text; color: transparent;
+      background-size: 200% 100%; animation: soapShift 8s ease-in-out infinite alternate;
+    }
+    @keyframes soapShift { to { background-position: 100% 0; } }
+
+    .container { max-width: 1280px; margin-inline: auto; padding-inline: clamp(1rem, 4vw, 3rem); }
+    .section { padding-block: clamp(4rem, 9vw, 7.5rem); position: relative; }
+    /* Skip rendering work for off-screen sections */
+    .cv { content-visibility: auto; contain-intrinsic-size: auto 900px; }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.35rem 0.9rem; border-radius: 999px;
+      font-size: 0.8rem; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase;
+      color: var(--accent); border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
+      background: color-mix(in srgb, var(--accent) 10%, transparent);
+    }
+    .section-head { max-width: 720px; margin: 0 auto 3.5rem; text-align: center; display: grid; gap: 1rem; justify-items: center; }
+
+    /* Accessibility: skip link + visible focus rings */
+    .skip { position: absolute; left: 1rem; top: -100px; z-index: 200; padding: 0.7rem 1rem; border-radius: 12px; background: var(--text); color: var(--bg); font-weight: 600; }
+    .skip:focus { top: 1rem; }
+    :focus-visible { outline: 3px solid var(--pink); outline-offset: 3px; border-radius: 10px; }
+
+    /* Grain overlay for depth (inline SVG noise) */
+    .grain {
+      position: fixed; inset: 0; z-index: 1; pointer-events: none; opacity: 0.05; mix-blend-mode: overlay;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+
+    /* ============================================================
+       3. GLASSMORPHISM (with @supports fallback)
+       ============================================================ */
+    .glass {
+      background: color-mix(in srgb, var(--bg) 82%, transparent);
+      border: 1px solid var(--border);
+    }
+    @supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+      .glass {
+        background: var(--surface);
+        -webkit-backdrop-filter: blur(18px) saturate(160%);
+        backdrop-filter: blur(18px) saturate(160%);
+      }
+    }
+
+    /* ============================================================
+       4. SOAP BUBBLES — floating background orbs with highlight shine
+       ============================================================ */
+    .bubbles { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+    .bubble {
+      position: absolute; bottom: -180px; left: var(--x); width: var(--s); height: var(--s); border-radius: 50%;
+      opacity: var(--bubble-alpha);
+      /* iridescent rim + soft inner tint, like a real soap film */
+      background:
+        radial-gradient(circle at 30% 26%, rgba(255,255,255,0.95) 0 5%, rgba(255,255,255,0) 14%),
+        radial-gradient(circle at 70% 78%, rgba(255,255,255,0.35) 0 4%, rgba(255,255,255,0) 12%),
+        radial-gradient(circle at 50% 50%, rgba(255,255,255,0) 55%, rgba(255,158,199,0.35) 68%, rgba(196,167,255,0.45) 78%, rgba(159,216,255,0.55) 90%, rgba(255,255,255,0.6) 100%);
+      box-shadow: inset 0 0 18px rgba(255,255,255,0.25), inset 10px -12px 28px rgba(159,216,255,0.35),
+                  inset -12px 10px 28px rgba(255,158,199,0.35), 0 0 40px rgba(196,167,255,0.25);
+      animation: rise var(--d) linear infinite, sway calc(var(--d) / 4) ease-in-out infinite alternate;
+      animation-delay: var(--delay), var(--delay);
+      will-change: transform;
+    }
+    @keyframes rise { from { transform: translate3d(0, 0, 0); } to { transform: translate3d(0, calc(-100dvh - 360px), 0); } }
+    @keyframes sway { from { margin-left: -24px; } to { margin-left: 24px; } }
+
+    /* ============================================================
+       5. LOADER, PROGRESS BAR, CURSOR
+       ============================================================ */
+    .loader {
+      position: fixed; inset: 0; z-index: 300; display: grid; place-items: center; background: var(--bg);
+      transition: opacity 0.5s var(--ease), visibility 0.5s;
+    }
+    .loader.is-done { opacity: 0; visibility: hidden; }
+    .loader-mark { width: 74px; height: 74px; border-radius: 50%; background: var(--soap); position: relative; animation: pop 0.8s var(--ease) both; box-shadow: 0 0 60px var(--glow); }
+    .loader-mark::after { content: ''; position: absolute; top: 14px; left: 16px; width: 16px; height: 16px; border-radius: 50%; background: rgba(255,255,255,0.85); }
+    @keyframes pop { 0% { transform: scale(0.2); opacity: 0; } 60% { transform: scale(1.12); opacity: 1; } 100% { transform: scale(1); } }
+
+    .progress {
+      position: fixed; top: 0; left: 0; right: 0; height: 3px; z-index: 120; background: var(--soap);
+      transform-origin: 0 50%; transform: scaleX(var(--p, 0));
+    }
+
+    .cursor-dot, .cursor-ring { display: none; }
+    @media (hover: hover) and (pointer: fine) {
+      .cursor-dot, .cursor-ring {
+        display: block; position: fixed; top: 0; left: 0; z-index: 250; pointer-events: none; border-radius: 50%;
+        transform: translate3d(-100px, -100px, 0);
+      }
+      .cursor-dot { width: 8px; height: 8px; margin: -4px 0 0 -4px; background: var(--pink); }
+      .cursor-ring {
+        width: 38px; height: 38px; margin: -19px 0 0 -19px; border: 1.5px solid color-mix(in srgb, var(--lavender) 70%, transparent);
+        display: grid; place-items: center; font-size: 0; font-weight: 600; color: #2A1B4A;
+        transition: width 0.35s var(--ease), height 0.35s var(--ease), margin 0.35s var(--ease), background 0.35s, font-size 0.2s;
+      }
+      .cursor-ring.is-hover { width: 60px; height: 60px; margin: -30px 0 0 -30px; background: color-mix(in srgb, var(--pink) 18%, transparent); }
+      .cursor-ring.is-view { width: 80px; height: 80px; margin: -40px 0 0 -40px; background: var(--soap); font-size: 0.8rem; border-color: transparent; }
+    }
+
+    /* ============================================================
+       6. BUTTONS — rounded, shine sweep, lift, press, ripple, conic border
+       ============================================================ */
+    .btn {
+      position: relative; display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+      min-height: 48px; padding: 0.8rem 1.5rem; border-radius: 999px; font-weight: 600; font-size: 0.98rem;
+      text-decoration: none; cursor: pointer; border: 0; overflow: hidden; isolation: isolate;
+      transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease), background-color 0.3s, color 0.3s;
+    }
+    .btn:active { transform: scale(0.96); }
+    .btn-primary { color: #fff; background: var(--cta); box-shadow: 0 12px 30px -10px var(--glow); }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 18px 40px -10px var(--glow); }
+    .btn-primary::before {
+      content: ''; position: absolute; inset: 0; z-index: -1; transform: translateX(-120%);
+      background: linear-gradient(100deg, transparent 20%, rgba(255,255,255,0.45) 50%, transparent 80%);
+    }
+    .btn-primary:hover::before { animation: shine 1.1s var(--ease); }
+    @keyframes shine { from { transform: translateX(-120%); } to { transform: translateX(120%); } }
+    .btn-ghost { color: var(--text); border: 1px solid var(--border); background: var(--surface); }
+    .btn-ghost:hover { transform: translateY(-2px); border-color: color-mix(in srgb, var(--pink) 60%, transparent); background: var(--surface-strong); }
+    .btn-sm { min-height: 44px; padding: 0.55rem 1.1rem; font-size: 0.9rem; }
+
+    /* Animated conic-gradient rotating border (uses @property so the angle can animate) */
+    @property --angle { syntax: '<angle>'; initial-value: 0deg; inherits: false; }
+    .btn-conic { padding: 2px; background: conic-gradient(from var(--angle), #FF9EC7, #C4A7FF, #9FD8FF, #A7F3D0, #FFC9A8, #FF9EC7); animation: rotateBorder 4s linear infinite; }
+    .btn-conic > span {
+      display: inline-flex; align-items: center; gap: 0.5rem; min-height: 44px; padding: 0.7rem 1.45rem; border-radius: 999px;
+      background: var(--cta); color: #fff; position: relative; overflow: hidden;
+    }
+    .btn-conic > span::before { content: ''; position: absolute; inset: 0; transform: translateX(-120%); background: linear-gradient(100deg, transparent 20%, rgba(255,255,255,0.45) 50%, transparent 80%); }
+    .btn-conic:hover > span::before { animation: shine 1.1s var(--ease); }
+    .btn-conic:hover { box-shadow: 0 18px 44px -12px var(--glow); }
+    @keyframes rotateBorder { to { --angle: 360deg; } }
+
+    .ripple { position: absolute; border-radius: 50%; transform: scale(0); background: rgba(255,255,255,0.45); animation: ripple 0.7s ease-out forwards; pointer-events: none; }
+    @keyframes ripple { to { transform: scale(3.2); opacity: 0; } }
+
+    /* ============================================================
+       7. ANNOUNCEMENT BAR + NAVBAR + MOBILE MENU
+       ============================================================ */
+    .announce {
+      position: relative; z-index: 60; display: flex; align-items: center; justify-content: center; gap: 0.75rem;
+      padding: 0.55rem 3rem; padding-top: calc(0.55rem + env(safe-area-inset-top)); font-size: 0.86rem; text-align: center;
+      background: var(--soap); color: #2A1B4A; font-weight: 500;
+    }
+    [data-theme="light"] .announce { color: #fff; }
+    .announce a { font-weight: 700; text-underline-offset: 3px; }
+    .announce-close {
+      position: absolute; right: 0.5rem; top: 50%; transform: translateY(-50%); width: 36px; height: 36px; border-radius: 50%;
+      border: 0; background: rgba(255,255,255,0.3); color: inherit; cursor: pointer; display: grid; place-items: center; transition: background 0.3s, transform 0.3s;
+    }
+    .announce-close:hover { background: rgba(255,255,255,0.55); transform: translateY(-50%) rotate(90deg); }
+    .announce.is-hidden { display: none; }
+
+    .nav-wrap { position: sticky; top: 0; z-index: 50; padding: 0.9rem clamp(0.75rem, 3vw, 2rem); transition: transform 0.45s var(--ease), padding 0.45s var(--ease); }
+    .nav-wrap.is-hidden { transform: translateY(-110%); }
+    .nav-wrap.is-scrolled { padding-block: 0.5rem; }
+    .nav {
+      max-width: 1280px; margin-inline: auto; display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+      padding: 0.6rem 0.75rem 0.6rem 1.1rem; border-radius: 999px; border: 1px solid transparent;
+      transition: background 0.45s, border-color 0.45s, box-shadow 0.45s, padding 0.45s var(--ease);
+    }
+    .nav-wrap.is-scrolled .nav { box-shadow: var(--shadow); padding-block: 0.4rem; }
+    .nav-wrap:not(.is-scrolled) .nav.glass { background: transparent; border-color: transparent; backdrop-filter: none; -webkit-backdrop-filter: none; }
+    .logo { display: inline-flex; align-items: center; gap: 0.6rem; font-family: 'Sora', sans-serif; font-weight: 700; font-size: 1.2rem; text-decoration: none; }
+    .logo-mark { width: 34px; height: 34px; border-radius: 50%; background: var(--soap); position: relative; box-shadow: 0 0 24px var(--glow); flex: none; transition: transform 0.5s var(--ease); }
+    .logo-mark::after { content: ''; position: absolute; top: 7px; left: 8px; width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.9); }
+    .logo:hover .logo-mark { transform: rotate(-20deg) scale(1.08); }
+    .nav-links { display: none; gap: 1.8rem; list-style: none; margin: 0; padding: 0; }
+    .nav-links a { position: relative; text-decoration: none; color: var(--muted); font-weight: 500; font-size: 0.95rem; padding-block: 0.4rem; transition: color 0.3s; }
+    .nav-links a::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 2px; border-radius: 2px; background: var(--soap); transform: scaleX(0); transform-origin: right; transition: transform 0.45s var(--ease); }
+    .nav-links a:hover { color: var(--text); }
+    .nav-links a:hover::after { transform: scaleX(1); transform-origin: left; }
+    .nav-actions { display: flex; align-items: center; gap: 0.5rem; }
+    .nav-login { display: none; }
+    .nav-cta { display: none; }
+    @media (min-width: 1024px) { .nav-links { display: flex; } .burger { display: none !important; } }
+    @media (min-width: 640px) { .nav-login, .nav-cta { display: inline-flex; } }
+
+    /* Animated sun / moon toggle */
+    .theme-toggle {
+      width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--border); background: var(--surface); color: var(--text);
+      display: grid; place-items: center; cursor: pointer; transition: transform 0.4s var(--ease), border-color 0.3s;
+    }
+    .theme-toggle:hover { transform: rotate(18deg) scale(1.06); border-color: var(--pink); }
+    .theme-toggle svg { width: 22px; height: 22px; }
+    .theme-toggle .sun-rays { transform-origin: center; transition: transform 0.6s var(--ease), opacity 0.4s; }
+    .theme-toggle .moon-mask { transition: transform 0.6s var(--ease); }
+    .theme-toggle .core { transform-origin: center; transition: transform 0.6s var(--ease); }
+    [data-theme="dark"] .theme-toggle .sun-rays { transform: rotate(-90deg) scale(0); opacity: 0; }
+    [data-theme="dark"] .theme-toggle .moon-mask { transform: translate(-7px, 4px); }
+    [data-theme="dark"] .theme-toggle .core { transform: scale(1.35); }
+    [data-theme="light"] .theme-toggle .moon-mask { transform: translate(8px, -8px); }
+
+    /* View Transitions API: circular reveal of the new theme */
+    ::view-transition-old(root), ::view-transition-new(root) { animation: none; mix-blend-mode: normal; }
+    ::view-transition-new(root) { z-index: 9999; }
+
+    /* Hamburger -> X */
+    .burger { width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--border); background: var(--surface); position: relative; cursor: pointer; display: inline-block; z-index: 51; }
+    .burger span { position: absolute; left: 12px; width: 20px; height: 2px; border-radius: 2px; background: var(--text); transition: transform 0.4s var(--ease), opacity 0.3s, top 0.4s var(--ease); }
+    .burger span:nth-child(1) { top: 15px; }
+    .burger span:nth-child(2) { top: 21px; }
+    .burger span:nth-child(3) { top: 27px; }
+    .burger[aria-expanded="true"] span:nth-child(1) { top: 21px; transform: rotate(45deg); }
+    .burger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+    .burger[aria-expanded="true"] span:nth-child(3) { top: 21px; transform: rotate(-45deg); }
+
+    /* Full-screen mobile menu with staggered links */
+    .mobile-menu {
+      position: fixed; inset: 0; z-index: 49; padding: 6rem 1.5rem 2rem; height: 100dvh; overflow-y: auto;
+      background: color-mix(in srgb, var(--bg) 96%, transparent);
+      display: flex; flex-direction: column; gap: 0.5rem; visibility: hidden;
+      transform: translateY(-100%); transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1), visibility 0.6s;
+      padding-top: calc(6rem + env(safe-area-inset-top)); padding-bottom: calc(2rem + env(safe-area-inset-bottom));
+    }
+    .mobile-menu.is-open { transform: none; visibility: visible; }
+    .mobile-menu a.m-link {
+      font-family: 'Sora', sans-serif; font-size: 1.8rem; color: var(--text); text-decoration: none;
+      padding: 0.6rem 0; min-height: 44px; border-bottom: 1px solid var(--border);
+      opacity: 0; transform: translateY(16px);
+      transition: opacity 0.5s, transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), color 0.3s;
+      transition-delay: calc(var(--i) * 70ms);
+    }
+    .mobile-menu a.m-link:hover { color: var(--pink); }
+    .mobile-menu.is-open a.m-link { opacity: 1; transform: none; }
+    .mobile-menu .m-ctas { margin-top: auto; display: grid; gap: 0.75rem; opacity: 0; transition: opacity 0.5s 0.45s; }
+    .mobile-menu.is-open .m-ctas { opacity: 1; }
+
+    /* ============================================================
+       8. HERO
+       ============================================================ */
+    .hero {
+      position: relative; padding: clamp(3rem, 8vw, 6rem) clamp(1rem, 4vw, 3rem) clamp(4rem, 9vw, 7rem);
+      overflow: hidden; z-index: 2;
+    }
+    .hero-grid {
+      display: grid; gap: 3rem; align-items: center; max-width: 1280px; margin-inline: auto;
+    }
+    @media (min-width: 1024px) {
+      .hero-grid { grid-template-columns: 1.05fr 1fr; gap: 4rem; }
+    }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.4rem 0.9rem; border-radius: 999px;
+      font-size: 0.82rem; border: 1px solid color-mix(in srgb, var(--accent) 40%, transparent);
+      color: var(--accent); background: color-mix(in srgb, var(--accent) 8%, transparent); text-decoration: none;
+      transition: transform 0.3s var(--ease), background 0.3s;
+    }
+    .hero-eyebrow:hover { transform: translateY(-2px); background: color-mix(in srgb, var(--accent) 16%, transparent); }
+    .hero-eyebrow .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--mint); box-shadow: 0 0 0 0 var(--mint); animation: pulse 2s infinite; }
+    @keyframes pulse { 70% { box-shadow: 0 0 0 10px rgba(167,243,208,0); } 100% { box-shadow: 0 0 0 0 rgba(167,243,208,0); } }
+    .hero h1 { margin-top: 1.4rem; }
+    /* Line-mask reveal: each line slides up from behind an overflow mask */
+    .line { display: block; overflow: hidden; padding-bottom: 0.08em; }
+    .line > span { display: inline-block; transform: translateY(110%); transition: transform 1s var(--ease); transition-delay: calc(var(--i, 0) * 120ms + 150ms); }
+    .is-loaded .line > span { transform: none; }
+    .hero .lead { margin-top: 1.4rem; max-width: 560px; }
+    /* Typing rotator for hero keywords */
+    .rotator { display: inline-block; position: relative; }
+    .rotator span {
+      position: absolute; left: 0; top: 0; white-space: nowrap; opacity: 0; transform: translateY(12px);
+      transition: opacity 0.5s, transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .rotator span.is-active { opacity: 1; transform: none; position: relative; }
+    .caret { display: inline-block; width: 3px; height: 0.9em; margin-left: 4px; vertical-align: -0.08em; border-radius: 2px; background: var(--pink); animation: blink 1s steps(1) infinite; }
+    @keyframes blink { 50% { opacity: 0; } }
+
+    .hero-ctas { display: flex; flex-wrap: wrap; gap: 0.9rem; margin-top: 2rem; }
+    .trust { margin-top: 1rem; font-size: 0.88rem; color: var(--muted); display: flex; align-items: flex-start; gap: 0.5rem; }
+    .trust svg { color: var(--mint); flex: none; margin-top: 2px; }
+    [data-theme="light"] .trust svg { color: #047857; }
+
+    /* Aurora background: blurred moving pastel blobs */
+    .aurora { position: absolute; inset: 0; z-index: -1; pointer-events: none; }
+    .aurora .blob {
+      position: absolute; width: 46vmax; height: 46vmax; border-radius: 50%; filter: blur(90px); opacity: 0.35;
+      animation: drift 18s ease-in-out infinite alternate;
+    }
+    .aurora .blob:nth-child(1) { background: var(--pink); top: -20%; left: -10%; }
+    .aurora .blob:nth-child(2) { background: var(--sky); top: 10%; right: -15%; animation-duration: 22s; }
+    .aurora .blob:nth-child(3) { background: var(--lavender); bottom: -25%; left: 25%; animation-duration: 26s; }
+    [data-theme="light"] .aurora .blob { opacity: 0.4; }
+    @keyframes drift {
+      0% { transform: translate3d(0,0,0) scale(1); }
+      100% { transform: translate3d(6vw,-4vh,0) scale(1.12); }
+    }
+
+    /* Dashboard mockup */
+    .mock { position: relative; perspective: 1200px; }
+    .mock-card {
+      border-radius: 26px; padding: 1.1rem; box-shadow: 0 40px 80px -30px rgba(10,0,40,0.6);
+      transform: rotateX(6deg) rotateY(-10deg); transform-style: preserve-3d;
+      transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .mock-card:hover { transform: rotateX(2deg) rotateY(-4deg); }
+    .mock-bar { display: flex; gap: 6px; margin-bottom: 0.9rem; align-items: center; }
+    .mock-bar i { width: 10px; height: 10px; border-radius: 50%; background: var(--border); display: block; }
+    .mock-bar i:nth-child(1) { background: var(--pink); } .mock-bar i:nth-child(2) { background: var(--peach); } .mock-bar i:nth-child(3) { background: var(--mint); }
+    .mock-bar .mock-url { margin-left: 0.6rem; flex: 1; height: 22px; border-radius: 999px; background: var(--surface); border: 1px solid var(--border); font-size: 0.68rem; color: var(--muted); display: flex; align-items: center; padding-inline: 0.7rem; overflow: hidden; white-space: nowrap; }
+    .mock-kpis { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.6rem; }
+    .kpi { border-radius: 16px; padding: 0.7rem; background: var(--surface); border: 1px solid var(--border); min-width: 0; }
+    .kpi small { display: block; font-size: 0.66rem; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .kpi b { display: block; font-family: 'Sora', sans-serif; font-size: clamp(0.9rem, 2.4vw, 1.15rem); margin-top: 0.15rem; }
+    .kpi em { font-style: normal; font-size: 0.66rem; font-weight: 600; color: var(--mint); }
+    [data-theme="light"] .kpi em { color: #047857; }
+    .kpi em.down { color: var(--pink); }
+    [data-theme="light"] .kpi em.down { color: #BE185D; }
+    .mock-chart { margin-top: 0.7rem; border-radius: 18px; padding: 0.8rem; background: var(--surface); border: 1px solid var(--border); }
+    .mock-chart-head { display: flex; justify-content: space-between; align-items: center; font-size: 0.74rem; color: var(--muted); margin-bottom: 0.4rem; }
+    .mock-chart-head b { color: var(--text); font-size: 0.82rem; }
+    .chip { font-size: 0.64rem; padding: 0.15rem 0.5rem; border-radius: 999px; background: color-mix(in srgb, var(--lavender) 22%, transparent); color: var(--text); }
+    .chart-line { stroke-dasharray: 600; stroke-dashoffset: 600; transition: stroke-dashoffset 2s var(--ease) 0.6s; }
+    .is-loaded .chart-line { stroke-dashoffset: 0; }
+    .mock-bottom { display: grid; grid-template-columns: 1.2fr 1fr; gap: 0.6rem; margin-top: 0.6rem; }
+    .bars { display: flex; align-items: flex-end; gap: 6px; height: 74px; }
+    .bars span { flex: 1; border-radius: 8px 8px 4px 4px; background: var(--soap); height: var(--h); transform-origin: bottom; transform: scaleY(0); transition: transform 1s var(--ease); transition-delay: calc(var(--i) * 80ms + 0.8s); }
+    .is-loaded .bars span { transform: scaleY(1); }
+    .ask { font-size: 0.72rem; color: var(--muted); display: grid; gap: 0.4rem; }
+    .ask .q { padding: 0.45rem 0.6rem; border-radius: 12px 12px 4px 12px; background: var(--cta); color: #fff; justify-self: end; max-width: 100%; }
+    .ask .a { padding: 0.45rem 0.6rem; border-radius: 12px 12px 12px 4px; background: var(--surface-strong); color: var(--text); }
+    .float-card {
+      position: absolute; border-radius: 18px; padding: 0.7rem 0.9rem; font-size: 0.78rem; display: flex; gap: 0.6rem; align-items: center;
+      box-shadow: var(--shadow); animation: float 6s ease-in-out infinite; max-width: 230px; z-index: 3;
+    }
+    .float-card .ic { width: 32px; height: 32px; border-radius: 50%; flex: none; display: grid; place-items: center; color: #2A1B4A; }
+    .float-card b { display: block; font-size: 0.82rem; }
+    .float-card small { color: var(--muted); }
+    .fc-1 { top: -18px; right: -8px; }
+    .fc-2 { bottom: -26px; left: -10px; animation-delay: -3s; }
+    @media (max-width: 640px) { .fc-1 { right: 4px; top: -26px; } .fc-2 { left: 4px; bottom: -34px; } .float-card { max-width: 200px; font-size: 0.72rem; } }
+    @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+
+    /* ============================================================
+       9. LOGO MARQUEE + STATS
+       ============================================================ */
+    .marquee { overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); }
+    .marquee-track { display: flex; gap: 3.5rem; width: max-content; animation: marquee 32s linear infinite; padding-block: 0.5rem; }
+    .marquee:hover .marquee-track { animation-play-state: paused; }
+    .marquee-track span { display: inline-flex; align-items: center; gap: 0.55rem; font-family: 'Sora', sans-serif; font-weight: 600; font-size: 1.15rem; color: var(--muted); white-space: nowrap; transition: color 0.3s, transform 0.3s; }
+    .marquee-track span:hover { color: var(--text); transform: scale(1.05); }
+    .marquee-track span i { width: 22px; height: 22px; border-radius: 50%; background: var(--soap); display: inline-block; opacity: 0.85; }
+    @keyframes marquee { to { transform: translateX(-50%); } }
+    .rating { display: flex; justify-content: center; align-items: center; gap: 0.6rem; flex-wrap: wrap; color: var(--muted); font-size: 0.92rem; margin-top: 1.6rem; text-align: center; }
+    .stars { color: #FFC24B; letter-spacing: 2px; }
+    [data-theme="light"] .stars { color: #B45309; }
+
+    .stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+    @media (min-width: 900px) { .stats { grid-template-columns: repeat(4, 1fr); } }
+    .stat { border-radius: var(--radius); padding: 1.6rem 1.2rem; text-align: center; transition: transform 0.4s var(--ease), border-color 0.4s; }
+    .stat:hover { transform: translateY(-4px); border-color: color-mix(in srgb, var(--pink) 50%, transparent); }
+    .stat b { display: block; font-family: 'Sora', sans-serif; font-size: clamp(1.9rem, 4vw, 2.8rem); font-variant-numeric: tabular-nums; }
+    .stat span { color: var(--muted); font-size: 0.92rem; }
+
+    /* ============================================================
+       10. FEATURES BENTO + SPOTLIGHT + TILT
+       ============================================================ */
+    .bento { display: grid; gap: 1rem; grid-template-columns: 1fr; }
+    @media (min-width: 700px) { .bento { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 1024px) {
+      .bento { grid-template-columns: repeat(3, 1fr); grid-auto-rows: minmax(220px, auto); }
+      .bento .span-2 { grid-column: span 2; }
+      .bento .row-2 { grid-row: span 2; }
+    }
+    .card {
+      position: relative; border-radius: 26px; padding: 1.6rem; overflow: hidden; isolation: isolate;
+      transition: transform 0.5s var(--ease), border-color 0.4s, box-shadow 0.4s;
+    }
+    .card:hover { border-color: color-mix(in srgb, var(--lavender) 55%, transparent); box-shadow: 0 24px 60px -30px var(--glow); }
+    /* Cursor spotlight: radial glow follows the mouse via --x / --y */
+    .spot::before {
+      content: ''; position: absolute; inset: 0; z-index: -1; opacity: 0; transition: opacity 0.4s;
+      background: radial-gradient(420px circle at var(--x, 50%) var(--y, 50%), color-mix(in srgb, var(--pink) 22%, transparent), transparent 60%);
+    }
+    .spot:hover::before { opacity: 1; }
+    .card h3 { font-size: 1.2rem; margin-top: 1.1rem; }
+    .card p { color: var(--muted); margin-top: 0.5rem; font-size: 0.96rem; }
+    .icon {
+      width: 52px; height: 52px; border-radius: 50%; display: grid; place-items: center; color: #2A1B4A; position: relative;
+      transition: transform 0.5s var(--ease);
+      box-shadow: inset -6px -8px 14px rgba(255,255,255,0.0), inset 6px 6px 12px rgba(255,255,255,0.45);
+    }
+    .icon::after { content: ''; position: absolute; top: 9px; left: 11px; width: 9px; height: 9px; border-radius: 50%; background: rgba(255,255,255,0.75); }
+    .icon svg { width: 24px; height: 24px; }
+    .card:hover .icon { transform: rotate(-12deg) scale(1.1); }
+    .bg-pink { background: var(--pink); } .bg-lav { background: var(--lavender); } .bg-sky { background: var(--sky); }
+    .bg-mint { background: var(--mint); } .bg-peach { background: var(--peach); } .bg-soap { background: var(--soap); }
+    [data-tilt] { transform-style: preserve-3d; will-change: transform; }
+    .mini-chart { margin-top: 1.4rem; display: flex; gap: 0.5rem; flex-wrap: wrap; }
+    .mini-chart .pill { padding: 0.4rem 0.8rem; border-radius: 999px; background: var(--surface-strong); border: 1px solid var(--border); font-size: 0.8rem; }
+    .typing-demo { margin-top: 1.2rem; border-radius: 16px; padding: 0.9rem 1rem; background: var(--surface-strong); border: 1px solid var(--border); font-size: 0.9rem; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; color: var(--text); min-height: 3.2em; }
+
+    /* ============================================================
+       11. HOW IT WORKS — SVG line drawn on scroll
+       ============================================================ */
+    .steps { position: relative; display: grid; gap: 1.2rem; }
+    @media (min-width: 900px) { .steps { grid-template-columns: repeat(4, 1fr); gap: 1.4rem; } }
+    .steps-line { position: absolute; left: 0; right: 0; top: 34px; height: 40px; width: 100%; display: none; pointer-events: none; }
+    @media (min-width: 900px) { .steps-line { display: block; } }
+    .steps-line path { stroke-dasharray: 1; stroke-dashoffset: 1; }
+    .step { position: relative; z-index: 1; border-radius: 24px; padding: 1.5rem; transition: transform 0.4s var(--ease), border-color 0.4s; }
+    .step:hover { transform: translateY(-6px); border-color: color-mix(in srgb, var(--sky) 60%, transparent); }
+    .step-num { width: 56px; height: 56px; border-radius: 50%; display: grid; place-items: center; font-family: 'Sora', sans-serif; font-weight: 700; color: #2A1B4A; background: var(--soap); box-shadow: 0 0 30px var(--glow); position: relative; }
+    .step-num::after { content: ''; position: absolute; top: 9px; left: 12px; width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,0.8); }
+    .step h3 { font-size: 1.12rem; margin-top: 1rem; }
+    .step p { color: var(--muted); font-size: 0.94rem; margin-top: 0.4rem; }
+
+    /* ============================================================
+       12. TABBED SHOWCASE
+       ============================================================ */
+    .tabs { display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap; margin-bottom: 2rem; padding: 0.4rem; border-radius: 999px; width: fit-content; max-width: 100%; margin-inline: auto; }
+    .tab { min-height: 44px; padding: 0.55rem 1.15rem; border-radius: 999px; border: 0; background: transparent; color: var(--muted); font-weight: 600; cursor: pointer; transition: color 0.3s, background 0.3s, transform 0.3s; }
+    .tab:hover { color: var(--text); transform: translateY(-1px); }
+    .tab[aria-selected="true"] { background: var(--cta); color: #fff; box-shadow: 0 10px 24px -10px var(--glow); }
+    .panel { display: grid; gap: 2rem; align-items: center; border-radius: 30px; padding: clamp(1.2rem, 3vw, 2.5rem); }
+    @media (min-width: 900px) { .panel { grid-template-columns: 1fr 1.15fr; } }
+    .panel[hidden] { display: none; }
+    .panel.is-entering { animation: panelIn 0.6s var(--ease); }
+    @keyframes panelIn { from { opacity: 0; transform: translateY(16px) scale(0.98); } to { opacity: 1; transform: none; } }
+    .panel ul { list-style: none; padding: 0; margin: 1.2rem 0 0; display: grid; gap: 0.7rem; }
+    .panel li { display: flex; gap: 0.6rem; align-items: flex-start; color: var(--muted); }
+    .panel li svg { flex: none; color: var(--pink); margin-top: 3px; }
+    [data-theme="light"] .panel li svg { color: #BE185D; }
+    .shot { border-radius: 22px; padding: 1rem; background: var(--surface); border: 1px solid var(--border); min-height: 260px; position: relative; overflow: hidden; cursor: none; }
+    @media not all and (hover: hover) and (pointer: fine) { .shot { cursor: auto; } }
+    .shot-row { display: flex; align-items: center; gap: 0.7rem; padding: 0.7rem; border-radius: 14px; background: var(--surface-strong); margin-bottom: 0.6rem; font-size: 0.86rem; transition: transform 0.3s var(--ease); }
+    .shot-row:hover { transform: translateX(6px); }
+    .shot-row .dot { width: 12px; height: 12px; border-radius: 50%; flex: none; }
+    .shot-row .bar { flex: 1; height: 8px; border-radius: 99px; background: var(--border); overflow: hidden; }
+    .shot-row .bar i { display: block; height: 100%; width: var(--w); border-radius: 99px; background: var(--soap); }
+
+    /* ============================================================
+       13. INTEGRATIONS + TESTIMONIALS
+       ============================================================ */
+    .integrations { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.9rem; }
+    @media (min-width: 640px) { .integrations { grid-template-columns: repeat(3, 1fr); } }
+    @media (min-width: 1024px) { .integrations { grid-template-columns: repeat(6, 1fr); } }
+    .integ { border-radius: 20px; padding: 1.1rem; display: flex; flex-direction: column; align-items: center; gap: 0.6rem; text-align: center; font-weight: 600; font-size: 0.9rem; transition: transform 0.4s var(--ease), border-color 0.3s; }
+    .integ small { color: var(--muted); font-weight: 400; font-size: 0.76rem; }
+    .integ:hover { transform: translateY(-6px) scale(1.02); border-color: color-mix(in srgb, var(--mint) 60%, transparent); }
+    .integ .badge-ic { width: 46px; height: 46px; border-radius: 50%; display: grid; place-items: center; font-family: 'Sora', sans-serif; font-weight: 700; color: #2A1B4A; transition: transform 0.5s var(--ease); }
+    .integ:hover .badge-ic { transform: rotate(360deg); }
+
+    .slider { position: relative; }
+    .slides { display: flex; gap: 1rem; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; padding: 0.5rem 0.25rem 1rem; scrollbar-width: none; overscroll-behavior-x: contain; }
+    .slides::-webkit-scrollbar { display: none; }
+    .slide { flex: 0 0 100%; scroll-snap-align: start; border-radius: 26px; padding: 1.7rem; display: flex; flex-direction: column; gap: 1.1rem; transition: transform 0.4s var(--ease), border-color 0.3s; }
+    @media (min-width: 768px) { .slide { flex-basis: calc(50% - 0.5rem); } }
+    @media (min-width: 1200px) { .slide { flex-basis: calc(33.333% - 0.67rem); } }
+    .slide:hover { transform: translateY(-4px); border-color: color-mix(in srgb, var(--pink) 50%, transparent); }
+    .slide blockquote { margin: 0; font-size: 1.02rem; line-height: 1.65; }
+    .person { display: flex; align-items: center; gap: 0.8rem; margin-top: auto; }
+    .avatar { width: 46px; height: 46px; border-radius: 50%; display: grid; place-items: center; font-weight: 700; color: #2A1B4A; flex: none; }
+    .person b { display: block; font-size: 0.95rem; }
+    .person small { color: var(--muted); }
+    .slider-ctrl { display: flex; justify-content: center; align-items: center; gap: 0.8rem; margin-top: 1rem; }
+    .round-btn { width: 46px; height: 46px; border-radius: 50%; border: 1px solid var(--border); background: var(--surface); color: var(--text); display: grid; place-items: center; cursor: pointer; transition: transform 0.3s var(--ease), background 0.3s; }
+    .round-btn:hover { transform: scale(1.08); background: var(--surface-strong); }
+    .dots { display: flex; gap: 0.2rem; }
+    .dots button { width: 28px; height: 28px; border: 0; background: transparent; cursor: pointer; display: grid; place-items: center; padding: 0; }
+    .dots button::before { content: ''; width: 8px; height: 8px; border-radius: 99px; background: var(--border); transition: width 0.4s var(--ease), background 0.3s; }
+    .dots button[aria-current="true"]::before { width: 22px; background: var(--pink); }
+
+    /* ============================================================
+       14. PRICING + COMPARISON
+       ============================================================ */
+    .billing { display: flex; align-items: center; justify-content: center; gap: 0.8rem; margin-bottom: 2.5rem; flex-wrap: wrap; }
+    .switch { width: 62px; height: 34px; border-radius: 999px; border: 1px solid var(--border); background: var(--surface-strong); position: relative; cursor: pointer; transition: background 0.3s; }
+    .switch::after { content: ''; position: absolute; top: 3px; left: 3px; width: 26px; height: 26px; border-radius: 50%; background: var(--soap); transition: transform 0.45s var(--ease); box-shadow: 0 4px 10px rgba(0,0,0,0.25); }
+    .switch[aria-checked="true"]::after { transform: translateX(28px); }
+    .billing label { cursor: pointer; color: var(--muted); font-weight: 600; transition: color 0.3s; }
+    .billing label.is-active { color: var(--text); }
+    .save-badge { padding: 0.25rem 0.7rem; border-radius: 999px; font-size: 0.78rem; font-weight: 700; background: var(--mint); color: #064E3B; }
+    .plans { display: grid; gap: 1.2rem; align-items: stretch; }
+    @media (min-width: 900px) { .plans { grid-template-columns: repeat(3, 1fr); } }
+    .plan { border-radius: 30px; padding: 2rem 1.6rem; display: flex; flex-direction: column; position: relative; transition: transform 0.45s var(--ease), border-color 0.3s, box-shadow 0.4s; }
+    .plan:hover { transform: translateY(-8px); box-shadow: 0 30px 70px -35px var(--glow); border-color: color-mix(in srgb, var(--lavender) 60%, transparent); }
+    .plan.popular { border: 2px solid transparent; background: linear-gradient(var(--bg-2), var(--bg-2)) padding-box, var(--soap) border-box; }
+    [data-theme="light"] .plan.popular { background: linear-gradient(#fff, #fff) padding-box, var(--soap) border-box; }
+    @media (min-width: 900px) { .plan.popular { transform: scale(1.04); } .plan.popular:hover { transform: scale(1.04) translateY(-8px); } }
+    .plan .tag { position: absolute; top: -14px; left: 50%; transform: translateX(-50%); padding: 0.3rem 0.9rem; border-radius: 999px; background: var(--cta); color: #fff; font-size: 0.76rem; font-weight: 700; white-space: nowrap; }
+    .plan h3 { font-size: 1.25rem; }
+    .plan .desc { color: var(--muted); font-size: 0.92rem; margin-top: 0.4rem; }
+    .price { display: flex; align-items: baseline; gap: 0.3rem; margin: 1.4rem 0 0.3rem; }
+    .price b { font-family: 'Sora', sans-serif; font-size: 3rem; font-variant-numeric: tabular-nums; line-height: 1; }
+    .price span { color: var(--muted); }
+    .price-note { font-size: 0.82rem; color: var(--muted); min-height: 1.3em; }
+    .plan ul { list-style: none; padding: 0; margin: 1.4rem 0 1.8rem; display: grid; gap: 0.65rem; font-size: 0.94rem; }
+    .plan li { display: flex; gap: 0.55rem; align-items: flex-start; }
+    .plan li svg { flex: none; color: var(--mint); margin-top: 3px; }
+    [data-theme="light"] .plan li svg { color: #047857; }
+    .plan .btn { margin-top: auto; width: 100%; }
+
+    .table-wrap { margin-top: 4rem; border-radius: 26px; overflow: auto; max-height: 560px; border: 1px solid var(--border); background: var(--surface); }
+    .compare { width: 100%; border-collapse: separate; border-spacing: 0; min-width: 620px; font-size: 0.93rem; }
+    .compare th, .compare td { padding: 0.95rem 1.1rem; text-align: center; border-bottom: 1px solid var(--border); }
+    .compare th:first-child, .compare td:first-child { text-align: left; }
+    .compare thead th { position: sticky; top: 0; z-index: 2; background: var(--bg-2); font-family: 'Sora', sans-serif; }
+    [data-theme="light"] .compare thead th { background: #F6EEFF; }
+    .compare tbody tr { transition: background 0.25s; }
+    .compare tbody tr:hover { background: var(--surface-strong); }
+    .compare .group td { font-weight: 700; color: var(--accent); background: color-mix(in srgb, var(--accent) 6%, transparent); text-align: left; }
+    .yes { color: var(--mint); } [data-theme="light"] .yes { color: #047857; }
+    .no { color: var(--muted); }
+
+    /* ============================================================
+       15. FAQ — smooth height via grid-template-rows 0fr -> 1fr
+       ============================================================ */
+    .faq { max-width: 820px; margin-inline: auto; display: grid; gap: 0.8rem; }
+    .faq-item { border-radius: 22px; transition: border-color 0.3s, background 0.3s; }
+    .faq-item:hover, .faq-item.is-open { border-color: color-mix(in srgb, var(--pink) 45%, transparent); }
+    .faq-q { width: 100%; min-height: 56px; display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: 1.1rem 1.3rem; background: none; border: 0; color: var(--text); font: 600 1.02rem 'Sora', sans-serif; text-align: left; cursor: pointer; border-radius: 22px; }
+    .faq-q .plus { width: 32px; height: 32px; border-radius: 50%; flex: none; position: relative; background: var(--surface-strong); transition: transform 0.45s var(--ease), background 0.3s; }
+    .faq-q .plus::before, .faq-q .plus::after { content: ''; position: absolute; left: 50%; top: 50%; width: 12px; height: 2px; border-radius: 2px; background: var(--text); transform: translate(-50%, -50%); }
+    .faq-q .plus::after { transform: translate(-50%, -50%) rotate(90deg); transition: transform 0.45s var(--ease); }
+    .faq-q[aria-expanded="true"] .plus { transform: rotate(180deg); background: var(--cta); }
+    .faq-q[aria-expanded="true"] .plus::before, .faq-q[aria-expanded="true"] .plus::after { background: #fff; }
+    .faq-q[aria-expanded="true"] .plus::after { transform: translate(-50%, -50%) rotate(0deg); }
+    .faq-a { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.5s var(--ease); }
+    .faq-a > div { overflow: hidden; }
+    .faq-a p { padding: 0 1.3rem 1.2rem; color: var(--muted); }
+    .faq-item.is-open .faq-a { grid-template-rows: 1fr; }
+
+    /* ============================================================
+       16. FINAL CTA, FOOTER, FLOATING UI
+       ============================================================ */
+    .final { border-radius: 36px; padding: clamp(2rem, 6vw, 4.5rem); text-align: center; position: relative; overflow: hidden; isolation: isolate; }
+    .final::before { content: ''; position: absolute; inset: 0; z-index: -1; background: radial-gradient(600px circle at 15% 0%, color-mix(in srgb, var(--pink) 30%, transparent), transparent 60%), radial-gradient(600px circle at 85% 100%, color-mix(in srgb, var(--sky) 30%, transparent), transparent 60%); }
+    .signup { margin: 2rem auto 0; max-width: 520px; display: flex; flex-direction: column; gap: 0.7rem; }
+    @media (min-width: 560px) { .signup { flex-direction: row; } }
+    .field { flex: 1; position: relative; }
+    .input { width: 100%; min-height: 52px; padding: 0.8rem 1.2rem; border-radius: 999px; border: 1px solid var(--border); background: var(--surface-strong); color: var(--text); font: inherit; transition: border-color 0.3s, box-shadow 0.3s; }
+    .input::placeholder { color: var(--muted); }
+    .input:focus { outline: none; border-color: var(--pink); box-shadow: 0 0 0 4px color-mix(in srgb, var(--pink) 25%, transparent); }
+    .input[aria-invalid="true"] { border-color: #FB7185; animation: shake 0.4s; }
+    @keyframes shake { 25% { transform: translateX(-6px); } 75% { transform: translateX(6px); } }
+    .form-msg { min-height: 1.4em; margin-top: 0.7rem; font-size: 0.9rem; }
+    .form-msg.err { color: #FDA4AF; } [data-theme="light"] .form-msg.err { color: #BE123C; }
+    .form-msg.ok { color: var(--mint); } [data-theme="light"] .form-msg.ok { color: #047857; }
+    .check-svg { width: 22px; height: 22px; display: none; }
+    .btn.is-success .check-svg { display: inline; }
+    .btn.is-success .btn-label { display: none; }
+    .check-svg path { stroke-dasharray: 24; stroke-dashoffset: 24; }
+    .btn.is-success .check-svg path { animation: draw 0.5s var(--ease) forwards; }
+    @keyframes draw { to { stroke-dashoffset: 0; } }
+
+    footer { position: relative; z-index: 2; border-top: 1px solid var(--border); padding-top: 4rem; padding-bottom: calc(2rem + env(safe-area-inset-bottom)); }
+    .foot-grid { display: grid; gap: 2.5rem; }
+    @media (min-width: 768px) { .foot-grid { grid-template-columns: 1.4fr repeat(3, 1fr); } }
+    @media (min-width: 1100px) { .foot-grid { grid-template-columns: 1.6fr repeat(3, 1fr) 1.5fr; } }
+    .foot-grid h4 { font-size: 0.95rem; margin-bottom: 1rem; }
+    .foot-grid ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.55rem; }
+    .foot-link { color: var(--muted); text-decoration: none; font-size: 0.93rem; position: relative; transition: color 0.3s; display: inline-block; padding-block: 0.15rem; }
+    .foot-link::after { content: ''; position: absolute; left: 0; bottom: 0; width: 100%; height: 1px; background: var(--pink); transform: scaleX(0); transform-origin: right; transition: transform 0.4s var(--ease); }
+    .foot-link:hover { color: var(--text); }
+    .foot-link:hover::after { transform: scaleX(1); transform-origin: left; }
+    .contact li { display: flex; gap: 0.5rem; align-items: flex-start; color: var(--muted); font-size: 0.93rem; }
+    .contact svg { flex: none; margin-top: 4px; color: var(--accent); }
+    .socials { display: flex; gap: 0.6rem; margin-top: 1.3rem; }
+    .social { width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; border: 1px solid var(--border); color: var(--text); position: relative; overflow: hidden; isolation: isolate; transition: color 0.3s, transform 0.3s var(--ease); }
+    .social::before { content: ''; position: absolute; inset: 0; z-index: -1; background: var(--soap); transform: translateY(100%); transition: transform 0.4s var(--ease); }
+    .social:hover { color: #2A1B4A; transform: translateY(-3px); }
+    .social:hover::before { transform: none; }
+    .mini-form { display: flex; gap: 0.5rem; margin-top: 0.8rem; }
+    .mini-form .input { min-height: 46px; padding: 0.6rem 1rem; font-size: 0.9rem; }
+    .copyright { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; color: var(--muted); font-size: 0.86rem; }
+
+    .to-top { position: fixed; right: calc(1rem + env(safe-area-inset-right)); bottom: calc(1rem + env(safe-area-inset-bottom)); z-index: 70; width: 54px; height: 54px; border-radius: 50%; border: 0; background: var(--surface-strong); color: var(--text); cursor: pointer; display: grid; place-items: center; opacity: 0; transform: translateY(20px) scale(0.8); pointer-events: none; transition: opacity 0.4s, transform 0.4s var(--ease); box-shadow: var(--shadow); }
+    .to-top.is-visible { opacity: 1; transform: none; pointer-events: auto; }
+    .to-top:hover { transform: translateY(-4px); }
+    .to-top svg.ring { position: absolute; inset: 0; transform: rotate(-90deg); }
+    .to-top svg.ring circle.prog { stroke-dasharray: 151; stroke-dashoffset: calc(151 - 151 * var(--p, 0)); }
+
+    .cookie { position: fixed; left: calc(1rem + env(safe-area-inset-left)); bottom: calc(1rem + env(safe-area-inset-bottom)); z-index: 80; max-width: min(420px, calc(100vw - 2rem)); border-radius: 24px; padding: 1.2rem 1.3rem; box-shadow: var(--shadow); transform: translateY(150%); transition: transform 0.6s var(--ease); }
+    .cookie.is-visible { transform: none; }
+    .cookie p { font-size: 0.9rem; color: var(--muted); }
+    .cookie .row { display: flex; gap: 0.6rem; margin-top: 0.9rem; flex-wrap: wrap; }
+
+    .toast { position: fixed; top: calc(1rem + env(safe-area-inset-top)); left: 50%; z-index: 260; transform: translate(-50%, -150%); padding: 0.8rem 1.2rem; border-radius: 999px; font-size: 0.92rem; font-weight: 600; display: flex; gap: 0.6rem; align-items: center; box-shadow: var(--shadow); transition: transform 0.5s var(--ease); max-width: calc(100vw - 2rem); }
+    .toast.is-visible { transform: translate(-50%, 0); }
+    .toast .ic { width: 24px; height: 24px; border-radius: 50%; background: var(--mint); color: #064E3B; display: grid; place-items: center; flex: none; }
+
+    /* Page transition veil (used when navigating away) */
+    .veil { position: fixed; inset: 0; z-index: 280; background: var(--soap); clip-path: circle(0% at 50% 50%); pointer-events: none; transition: clip-path 0.6s var(--ease); }
+    .veil.is-active { clip-path: circle(150% at 50% 50%); }
+
+    /* ============================================================
+       17. SCROLL REVEAL (one shared IntersectionObserver) + text effects
+       ============================================================ */
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.9s var(--ease), transform 0.9s var(--ease); transition-delay: calc(var(--i, 0) * 90ms); }
+    .reveal.is-visible { opacity: 1; transform: none; }
+    .words .w { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: 0.06em; }
+    .words .w > span { display: inline-block; transform: translateY(105%); transition: transform 0.8s var(--ease); transition-delay: calc(var(--i) * 55ms); }
+    .words.is-visible .w > span { transform: none; }
+    .scramble { font-variant-numeric: tabular-nums; }
+
+    /* CSS scroll-driven animation (progressive enhancement): parallax on the hero mock */
+    @supports (animation-timeline: view()) {
+      .parallax-sd { animation: parallaxUp linear both; animation-timeline: view(); animation-range: entry 0% exit 100%; }
+      @keyframes parallaxUp { from { translate: 0 40px; } to { translate: 0 -40px; } }
+    }
+
+    /* Mobile: lighter effects */
+    @media (max-width: 767px) {
+      .aurora .blob { filter: blur(60px); opacity: 0.28; }
+      .mock-card { transform: none; }
+      .bubble:nth-child(n+7) { display: none; }
+    }
+
+    /* Respect reduced motion: kill heavy motion, keep content visible */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; scroll-behavior: auto !important; }
+      .bubbles, .aurora { display: none; }
+      .reveal, .line > span, .words .w > span { opacity: 1 !important; transform: none !important; }
+      .marquee-track { animation: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <!-- Loader (removed in under 1s) -->
+  <div class="loader" id="loader" aria-hidden="true"><div class="loader-mark"></div></div>
+
+  <div class="progress" id="progress" aria-hidden="true"></div>
+  <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+  <div class="cursor-ring" id="cursorRing" aria-hidden="true">View</div>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="veil" id="veil" aria-hidden="true"></div>
+
+  <!-- Floating soap bubbles (positions/sizes via CSS vars) -->
+  <div class="bubbles" aria-hidden="true">
+    <span class="bubble" style="--x:6%;--s:90px;--d:22s;--delay:-3s"></span>
+    <span class="bubble" style="--x:22%;--s:46px;--d:17s;--delay:-11s"></span>
+    <span class="bubble" style="--x:40%;--s:130px;--d:28s;--delay:-6s"></span>
+    <span class="bubble" style="--x:62%;--s:60px;--d:19s;--delay:-14s"></span>
+    <span class="bubble" style="--x:80%;--s:110px;--d:25s;--delay:-2s"></span>
+    <span class="bubble" style="--x:90%;--s:38px;--d:15s;--delay:-8s"></span>
+    <span class="bubble" style="--x:14%;--s:70px;--d:24s;--delay:-18s"></span>
+    <span class="bubble" style="--x:52%;--s:34px;--d:14s;--delay:-4s"></span>
+    <span class="bubble" style="--x:72%;--s:150px;--d:32s;--delay:-20s"></span>
+    <span class="bubble" style="--x:32%;--s:56px;--d:20s;--delay:-16s"></span>
+  </div>
+
+  <!-- Announcement bar -->
+  <div class="announce" id="announce" role="region" aria-label="Announcement">
+    <span>✨ New: Lumen Copilot now forecasts revenue 30 days ahead. <a href="#product">See how it works →</a></span>
+    <button class="announce-close" id="announceClose" aria-label="Dismiss announcement">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+  </div>
+
+  <!-- Sticky navbar -->
+  <div class="nav-wrap" id="navWrap">
+    <nav class="nav glass" aria-label="Primary">
+      <a href="#top" class="logo" aria-label="Lumen Analytics home"><span class="logo-mark" aria-hidden="true"></span>Lumen</a>
+      <ul class="nav-links">
+        <li><a href="#features">Features</a></li>
+        <li><a href="#how">How it works</a></li>
+        <li><a href="#product">Product</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+      <div class="nav-actions">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <mask id="moonMask"><rect width="24" height="24" fill="#fff"/><circle class="moon-mask" cx="24" cy="4" r="8" fill="#000"/></mask>
+            <circle class="core" cx="12" cy="12" r="5" fill="currentColor" mask="url(#moonMask)"/>
+            <g class="sun-rays" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+              <path d="M12 1.5v2.5M12 20v2.5M4.6 4.6l1.8 1.8M17.6 17.6l1.8 1.8M1.5 12H4M20 12h2.5M4.6 19.4l1.8-1.8M17.6 6.4l1.8-1.8"/>
+            </g>
+          </svg>
+        </button>
+        <a href="#signup" class="btn btn-ghost btn-sm nav-login">Log in</a>
+        <a href="#signup" class="btn btn-primary btn-sm nav-cta magnetic">Start free</a>
+        <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu"><span></span><span></span><span></span></button>
+      </div>
+    </nav>
+  </div>
+
+  <!-- Mobile full-screen menu -->
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+    <a class="m-link" href="#features" style="--i:0">Features</a>
+    <a class="m-link" href="#how" style="--i:1">How it works</a>
+    <a class="m-link" href="#product" style="--i:2">Product</a>
+    <a class="m-link" href="#pricing" style="--i:3">Pricing</a>
+    <a class="m-link" href="#testimonials" style="--i:4">Customers</a>
+    <a class="m-link" href="#faq" style="--i:5">FAQ</a>
+    <div class="m-ctas">
+      <a href="#signup" class="btn btn-ghost">Log in</a>
+      <a href="#signup" class="btn btn-primary">Start free — no card needed</a>
+    </div>
+  </div>
+
+  <main id="main" tabindex="-1">
+    <!-- ======================= HERO ======================= -->
+    <header class="hero" id="top">
+      <div class="aurora" aria-hidden="true"><span class="blob"></span><span class="blob"></span><span class="blob"></span></div>
+      <div class="hero-grid">
+        <div>
+          <a href="#product" class="hero-eyebrow"><span class="dot" aria-hidden="true"></span> Lumen Copilot 2.0 is live</a>
+          <h1 class="h1">
+            <span class="line"><span style="--i:0">Turn raw data into</span></span>
+            <span class="line"><span style="--i:1"><span class="rotator soap-text" id="rotator" aria-live="polite"><span class="is-active">decisions</span><span>forecasts</span><span>answers</span><span>growth</span></span><span class="caret" aria-hidden="true"></span></span></span>
+          </h1>
+          <p class="lead">Ask questions in plain English and get instant, explained insights from every source you connect — no SQL, no waiting on the data team, no guesswork.</p>
+          <div class="hero-ctas">
+            <a href="#signup" class="btn btn-conic magnetic"><span>Start free trial
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+            <a href="#product" class="btn btn-ghost">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg> Watch 2-min demo</a>
+          </div>
+          <p class="trust">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+            <span>No credit card required · 14-day free trial · SOC 2 Type II</span>
+          </p>
+        </div>
+
+        <!-- Realistic HTML/CSS dashboard mockup -->
+        <div class="mock parallax-sd" aria-label="Lumen dashboard preview" role="img">
+          <div class="mock-card glass" data-tilt>
+            <div class="mock-bar"><i></i><i></i><i></i><span class="mock-url">app.lumen.ai/workspace/revenue</span></div>
+            <div class="mock-kpis">
+              <div class="kpi"><small>Revenue (MTD)</small><b>$482.9k</b><em>▲ 12.4%</em></div>
+              <div class="kpi"><small>Active users</small><b>38,214</b><em>▲ 8.1%</em></div>
+              <div class="kpi"><small>Churn</small><b>1.8%</b><em class="down">▼ 0.6%</em></div>
+            </div>
+            <div class="mock-chart">
+              <div class="mock-chart-head"><b>Revenue vs. forecast</b><span class="chip">Last 30 days</span></div>
+              <svg viewBox="0 0 300 110" width="100%" height="110" preserveAspectRatio="none" aria-hidden="true">
+                <defs>
+                  <linearGradient id="lg" x1="0" x2="1"><stop offset="0" stop-color="#FF9EC7"/><stop offset=".5" stop-color="#C4A7FF"/><stop offset="1" stop-color="#9FD8FF"/></linearGradient>
+                  <linearGradient id="fill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#C4A7FF" stop-opacity=".45"/><stop offset="1" stop-color="#C4A7FF" stop-opacity="0"/></linearGradient>
+                </defs>
+                <g stroke="currentColor" opacity=".12"><path d="M0 27h300M0 55h300M0 83h300"/></g>
+                <path d="M0 90 C30 84 45 70 70 72 S110 50 135 56 S175 30 200 36 S245 18 270 20 L300 12 V110 H0Z" fill="url(#fill)"/>
+                <path class="chart-line" d="M0 90 C30 84 45 70 70 72 S110 50 135 56 S175 30 200 36 S245 18 270 20 L300 12" fill="none" stroke="url(#lg)" stroke-width="3" stroke-linecap="round"/>
+                <path d="M200 36 S245 30 270 26 L300 22" fill="none" stroke="#A7F3D0" stroke-width="2" stroke-dasharray="4 5"/>
+                <circle cx="270" cy="20" r="5" fill="#FF9EC7"/><circle cx="270" cy="20" r="10" fill="#FF9EC7" opacity=".25"/>
+              </svg>
+            </div>
+            <div class="mock-bottom">
+              <div class="mock-chart" style="margin-top:0">
+                <div class="mock-chart-head"><b>Signups / week</b></div>
+                <div class="bars">
+                  <span style="--h:40%;--i:0"></span><span style="--h:62%;--i:1"></span><span style="--h:48%;--i:2"></span><span style="--h:75%;--i:3"></span><span style="--h:58%;--i:4"></span><span style="--h:88%;--i:5"></span><span style="--h:96%;--i:6"></span>
+                </div>
+              </div>
+              <div class="mock-chart ask" style="margin-top:0">
+                <span class="q">Why did churn drop?</span>
+                <span class="a">New onboarding checklist cut EU churn by 0.6 pts.</span>
+              </div>
+            </div>
+          </div>
+          <div class="float-card glass fc-1">
+            <span class="ic bg-mint" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M3 17l6-6 4 4 8-8"/></svg></span>
+            <span><b>Forecast beat</b><small>Q4 tracking +18% above plan</small></span>
+          </div>
+          <div class="float-card glass fc-2">
+            <span class="ic bg-pink" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 8v5M12 17h.01"/><circle cx="12" cy="12" r="9"/></svg></span>
+            <span><b>Anomaly caught</b><small>Checkout errors spiked in iOS 18.2</small></span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- ======================= SOCIAL PROOF ======================= -->
+    <section class="section" style="padding-top:1rem" aria-label="Trusted by">
+      <div class="container">
+        <p class="reveal" style="text-align:center;color:var(--muted);font-size:.92rem;margin-bottom:1.4rem">Trusted by 4,000+ data-driven teams worldwide</p>
+        <div class="marquee reveal" style="--i:1">
+          <div class="marquee-track">
+            <span><i></i>Northwind</span><span><i></i>Halcyon</span><span><i></i>Brightpath</span><span><i></i>Vertex Labs</span><span><i></i>Oakline</span><span><i></i>Quanta</span><span><i></i>Mosaic Health</span><span><i></i>Pinecrest</span>
+            <span aria-hidden="true"><i></i>Northwind</span><span aria-hidden="true"><i></i>Halcyon</span><span aria-hidden="true"><i></i>Brightpath</span><span aria-hidden="true"><i></i>Vertex Labs</span><span aria-hidden="true"><i></i>Oakline</span><span aria-hidden="true"><i></i>Quanta</span><span aria-hidden="true"><i></i>Mosaic Health</span><span aria-hidden="true"><i></i>Pinecrest</span>
+          </div>
+        </div>
+        <p class="rating reveal" style="--i:2"><span class="stars" aria-hidden="true">★★★★★</span> <strong style="color:var(--text)">4.9/5</strong> from 1,280 reviews on G2 and Capterra</p>
+
+        <div class="stats" style="margin-top:3.5rem">
+          <div class="stat glass reveal" style="--i:0"><b data-count="4000" data-suffix="+">0</b><span>teams onboarded</span></div>
+          <div class="stat glass reveal" style="--i:1"><b data-count="2.4" data-decimals="1" data-suffix="B">0</b><span>rows analysed daily</span></div>
+          <div class="stat glass reveal" style="--i:2"><b data-count="11" data-suffix="x">0</b><span>faster time to insight</span></div>
+          <div class="stat glass reveal" style="--i:3"><b data-count="99.99" data-decimals="2" data-suffix="%">0</b><span>uptime, last 12 months</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= FEATURES ======================= -->
+    <section class="section cv" id="features" aria-labelledby="features-title">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow reveal">Features</span>
+          <h2 class="h2 words" id="features-title" data-split>Everything your team needs to <span class="soap-text">understand the numbers</span></h2>
+          <p class="lead reveal" style="--i:2">One workspace for questions, dashboards, alerts and forecasts — explained in language everyone on your team can act on.</p>
+        </div>
+        <div class="bento">
+          <article class="card glass spot reveal span-2" data-tilt style="--i:0">
+            <span class="icon bg-pink" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 01-11.6 7.1L4 20l1-4.6A8 8 0 1121 12z"/><path d="M8.5 11h7M8.5 14h4"/></svg></span>
+            <h3>Ask in plain English</h3>
+            <p>Type a question like you would ask a colleague. Lumen writes the query, runs it on live data and explains the answer, with the SQL one click away for analysts.</p>
+            <div class="typing-demo" id="typingDemo" aria-label="Example question">›&nbsp;</div>
+          </article>
+          <article class="card glass spot reveal row-2" data-tilt style="--i:1">
+            <span class="icon bg-lav" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/></svg></span>
+            <h3>Forecasts you can trust</h3>
+            <p>Seasonality-aware models predict revenue, demand and churn up to 90 days out, with confidence bands and the drivers behind every number.</p>
+            <div class="mini-chart"><span class="pill">Revenue +18%</span><span class="pill">Demand ±4%</span><span class="pill">Churn 1.6%</span><span class="pill">Pipeline $2.1M</span></div>
+          </article>
+          <article class="card glass spot reveal" data-tilt style="--i:2">
+            <span class="icon bg-sky" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 10-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 01-3.4 0"/></svg></span>
+            <h3>Anomaly alerts</h3>
+            <p>Get pinged in Slack the moment a metric moves, with the likely cause already attached.</p>
+          </article>
+          <article class="card glass spot reveal" data-tilt style="--i:3">
+            <span class="icon bg-mint" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v6c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 11v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></svg></span>
+            <h3>120+ connectors</h3>
+            <p>Snowflake, BigQuery, Postgres, Stripe, HubSpot and more, synced in minutes with zero pipelines to maintain.</p>
+          </article>
+          <article class="card glass spot reveal" data-tilt style="--i:4">
+            <span class="icon bg-peach" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="3"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></span>
+            <h3>Enterprise-grade security</h3>
+            <p>SOC 2 Type II, SSO/SAML, row-level permissions and full audit logs. Your data is never used to train models.</p>
+          </article>
+          <article class="card glass spot reveal span-2" data-tilt style="--i:5">
+            <span class="icon bg-soap" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9" rx="2"/><rect x="14" y="3" width="7" height="5" rx="2"/><rect x="14" y="12" width="7" height="9" rx="2"/><rect x="3" y="16" width="7" height="5" rx="2"/></svg></span>
+            <h3>Living dashboards</h3>
+            <p>Turn any answer into a dashboard that updates itself and writes a weekly summary for stakeholders, so the Monday meeting starts with decisions instead of screenshots.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= HOW IT WORKS ======================= -->
+    <section class="section cv" id="how" aria-labelledby="how-title">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow reveal">How it works</span>
+          <h2 class="h2" id="how-title"><span class="scramble" id="scramble" data-text="From question to answer in minutes">From question to answer in minutes</span></h2>
+          <p class="lead reveal" style="--i:1">No migration project, no six-week rollout. Most teams get their first explained insight before their coffee cools.</p>
+        </div>
+        <div class="steps" id="steps">
+          <svg class="steps-line" viewBox="0 0 1000 40" preserveAspectRatio="none" aria-hidden="true">
+            <defs><linearGradient id="sl" x1="0" x2="1"><stop offset="0" stop-color="#FF9EC7"/><stop offset=".5" stop-color="#C4A7FF"/><stop offset="1" stop-color="#9FD8FF"/></linearGradient></defs>
+            <path id="stepsPath" pathLength="1" d="M60 20 C180 0 260 40 375 20 S560 0 625 20 S820 40 940 20" fill="none" stroke="url(#sl)" stroke-width="3" stroke-linecap="round"/>
+          </svg>
+          <div class="step glass reveal" style="--i:0"><span class="step-num">1</span><h3>Connect your sources</h3><p>Pick from 120+ connectors and authenticate in a couple of clicks. Read-only by default.</p></div>
+          <div class="step glass reveal" style="--i:1"><span class="step-num">2</span><h3>Lumen learns your data</h3><p>It maps tables, metrics and business terms automatically, then asks you to confirm the important ones.</p></div>
+          <div class="step glass reveal" style="--i:2"><span class="step-num">3</span><h3>Ask anything</h3><p>Questions in plain English return charts, explanations and the exact query that produced them.</p></div>
+          <div class="step glass reveal" style="--i:3"><span class="step-num">4</span><h3>Share and automate</h3><p>Pin answers to dashboards, schedule digests and set alerts that watch your metrics around the clock.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= TABBED SHOWCASE ======================= -->
+    <section class="section cv" id="product" aria-labelledby="product-title">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow reveal">Product tour</span>
+          <h2 class="h2 words" id="product-title" data-split>Built for every team that <span class="soap-text">lives in the data</span></h2>
+        </div>
+        <div class="tabs glass reveal" role="tablist" aria-label="Product use cases">
+          <button class="tab" role="tab" id="tab-growth" aria-controls="panel-growth" aria-selected="true">Growth</button>
+          <button class="tab" role="tab" id="tab-finance" aria-controls="panel-finance" aria-selected="false" tabindex="-1">Finance</button>
+          <button class="tab" role="tab" id="tab-product" aria-controls="panel-product" aria-selected="false" tabindex="-1">Product</button>
+        </div>
+        <div class="panel glass reveal" role="tabpanel" id="panel-growth" aria-labelledby="tab-growth">
+          <div>
+            <h3 class="h2" style="font-size:clamp(1.5rem,3vw,2.1rem)">Find the channels that actually convert</h3>
+            <p class="lead" style="margin-top:.8rem">Blend ad spend, web analytics and CRM data to see true acquisition cost per channel, updated hourly.</p>
+            <ul>
+              <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>Multi-touch attribution without a data engineer</li>
+              <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>Cohort retention curves in one question</li>
+              <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>Budget recommendations ranked by expected ROI</li>
+            </ul>
+          </div>
+          <div class="shot" data-cursor="view">
+            <div class="shot-row"><span class="dot bg-pink"></span>Paid social<span class="bar"><i style="--w:82%"></i></span>$38 CAC</div>
+            <div class="shot-row"><span class="dot bg-lav"></span>Organic search<span class="bar"><i style="--w:64%"></i></span>$12 CAC</div>
+            <div class="shot-row"><span class="dot bg-sky"></span>Partnerships<span class="bar"><i style="--w:48%"></i></span>$21 CAC</div>
+            <div class="shot-row"><span class="dot bg-mint"></span>Referrals<span class="bar"><i style="--w:36%"></i></span>$9 CAC</div>
+            <div class="shot-row"><span class="dot bg-peach"></span>Events<span class="bar"><i style="--w:22%"></i></span>$74 CAC</div>
+          </div>
+        </div>
+        <div class="panel glass" role="tabpanel" id="panel-finance" aria-labelledby="tab-finance" hidden>
+          <div>
+            <h3 class="h2" style="font-size:clamp(1.5rem,3vw,2.1rem)">Close the books with fewer spreadsheets</h3>
+            <p class="lead" style="margin-top:.8rem">Reconcile Stripe, your ledger and bank feeds automatically, and forecast cash with explained variance.</p>
+            <ul>
+              <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>MRR, ARR and net revenue retention out of the box</li>
+              <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>Board-ready reports generated every month</li>
+              <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>Cash runway scenarios in seconds</li>
+            </ul>
+          </div>
+          <div class="shot" data-cursor="view">
+            <div class="shot-row"><span class="dot bg-mint"></span>MRR<span class="bar"><i style="--w:90%"></i></span>$1.24M</div>
+            <div class="shot-row"><span class="dot bg-sky"></span>Net retention<span class="bar"><i style="--w:76%"></i></span>118%</div>
+            <div class="shot-row"><span class="dot bg-lav"></span>Gross margin<span class="bar"><i style="--w:68%"></i></span>81%</div>
+            <div class="shot-row"><span class="dot bg-pink"></span>Burn multiple<span class="bar"><i style="--w:30%"></i></span>0.9x</div>
+            <div class="shot-row"><span class="dot bg-peach"></span>Runway<span class="bar"><i style="--w:58%"></i></span>34 mo</div>
+          </div>
+        </div>
+        <div class="panel glass" role="tabpanel" id="panel-product" aria-labelledby="tab-product" hidden>
+          <div>
+            <h3 class="h2" style="font-size:clamp(1.5rem,3vw,2.1rem)">Know which features keep users around</h3>
+            <p class="lead" style="margin-top:.8rem">Connect product events and see adoption, funnels and the behaviours that predict long-term retention.</p>
+            <ul>
+              <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>Funnel drop-off explained step by step</li>
+              <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>Feature adoption by plan, region and cohort</li>
+              <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>Release impact measured automatically</li>
+            </ul>
+          </div>
+          <div class="shot" data-cursor="view">
+            <div class="shot-row"><span class="dot bg-lav"></span>Visited pricing<span class="bar"><i style="--w:100%"></i></span>12,480</div>
+            <div class="shot-row"><span class="dot bg-sky"></span>Started trial<span class="bar"><i style="--w:62%"></i></span>7,730</div>
+            <div class="shot-row"><span class="dot bg-mint"></span>Connected data<span class="bar"><i style="--w:44%"></i></span>5,490</div>
+            <div class="shot-row"><span class="dot bg-pink"></span>Asked 3+ questions<span class="bar"><i style="--w:35%"></i></span>4,370</div>
+            <div class="shot-row"><span class="dot bg-peach"></span>Converted to paid<span class="bar"><i style="--w:19%"></i></span>2,370</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= INTEGRATIONS ======================= -->
+    <section class="section cv" id="integrations" aria-labelledby="int-title">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow reveal">Integrations</span>
+          <h2 class="h2 words" id="int-title" data-split>Plugs into the stack <span class="soap-text">you already use</span></h2>
+        </div>
+        <div class="integrations">
+          <div class="integ glass reveal" style="--i:0"><span class="badge-ic bg-sky">Sf</span>Snowflake<small>Warehouse</small></div>
+          <div class="integ glass reveal" style="--i:1"><span class="badge-ic bg-lav">BQ</span>BigQuery<small>Warehouse</small></div>
+          <div class="integ glass reveal" style="--i:2"><span class="badge-ic bg-mint">Pg</span>Postgres<small>Database</small></div>
+          <div class="integ glass reveal" style="--i:3"><span class="badge-ic bg-pink">St</span>Stripe<small>Billing</small></div>
+          <div class="integ glass reveal" style="--i:4"><span class="badge-ic bg-peach">Hs</span>HubSpot<small>CRM</small></div>
+          <div class="integ glass reveal" style="--i:5"><span class="badge-ic bg-soap">Sl</span>Slack<small>Alerts</small></div>
+          <div class="integ glass reveal" style="--i:0"><span class="badge-ic bg-peach">Sh</span>Shopify<small>Commerce</small></div>
+          <div class="integ glass reveal" style="--i:1"><span class="badge-ic bg-pink">GA</span>Google Analytics<small>Web</small></div>
+          <div class="integ glass reveal" style="--i:2"><span class="badge-ic bg-sky">Sf</span>Salesforce<small>CRM</small></div>
+          <div class="integ glass reveal" style="--i:3"><span class="badge-ic bg-lav">Mx</span>Mixpanel<small>Product</small></div>
+          <div class="integ glass reveal" style="--i:4"><span class="badge-ic bg-mint">Gs</span>Google Sheets<small>Files</small></div>
+          <div class="integ glass reveal" style="--i:5"><span class="badge-ic bg-soap">+</span>110 more<small>Browse all</small></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= TESTIMONIALS ======================= -->
+    <section class="section cv" id="testimonials" aria-labelledby="t-title">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow reveal">Customers</span>
+          <h2 class="h2 words" id="t-title" data-split>Loved by operators, <span class="soap-text">trusted by analysts</span></h2>
+        </div>
+        <div class="slider reveal" aria-roledescription="carousel" aria-label="Customer testimonials">
+          <div class="slides" id="slides" tabindex="0">
+            <figure class="slide glass"><span class="stars" aria-label="5 out of 5 stars">★★★★★</span><blockquote>“We replaced three BI tools and a weekly reporting ritual with Lumen. Our ops leads now answer their own questions in seconds.”</blockquote><figcaption class="person"><span class="avatar bg-pink" aria-hidden="true">SK</span><span><b>Sara Khan</b><small>VP Operations, Northwind</small></span></figcaption></figure>
+            <figure class="slide glass"><span class="stars" aria-label="5 out of 5 stars">★★★★★</span><blockquote>“The anomaly alerts caught a payment bug on a Sunday night. That single alert paid for the next five years of the subscription.”</blockquote><figcaption class="person"><span class="avatar bg-sky" aria-hidden="true">DM</span><span><b>Daniel Moreno</b><small>CTO, Brightpath</small></span></figcaption></figure>
+            <figure class="slide glass"><span class="stars" aria-label="5 out of 5 stars">★★★★★</span><blockquote>“Forecasts finally come with reasons. Our board meetings went from debating numbers to deciding what to do about them.”</blockquote><figcaption class="person"><span class="avatar bg-lav" aria-hidden="true">AL</span><span><b>Aisha Latif</b><small>CFO, Halcyon</small></span></figcaption></figure>
+            <figure class="slide glass"><span class="stars" aria-label="5 out of 5 stars">★★★★★</span><blockquote>“Setup took eleven minutes. By lunch the marketing team had a CAC dashboard they actually trust.”</blockquote><figcaption class="person"><span class="avatar bg-mint" aria-hidden="true">JT</span><span><b>James Turner</b><small>Head of Growth, Quanta</small></span></figcaption></figure>
+            <figure class="slide glass"><span class="stars" aria-label="5 out of 5 stars">★★★★★</span><blockquote>“As an analyst I was sceptical. The generated SQL is clean, readable and editable — it saves me hours every week.”</blockquote><figcaption class="person"><span class="avatar bg-peach" aria-hidden="true">MR</span><span><b>Mei Ren</b><small>Senior Analyst, Mosaic Health</small></span></figcaption></figure>
+          </div>
+          <div class="slider-ctrl">
+            <button class="round-btn" id="prevSlide" aria-label="Previous testimonial"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
+            <div class="dots" id="dots" role="group" aria-label="Choose testimonial"></div>
+            <button class="round-btn" id="nextSlide" aria-label="Next testimonial"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= PRICING ======================= -->
+    <section class="section cv" id="pricing" aria-labelledby="p-title">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow reveal">Pricing</span>
+          <h2 class="h2 words" id="p-title" data-split>Simple pricing that <span class="soap-text">grows with you</span></h2>
+          <p class="lead reveal" style="--i:1">Start free, upgrade when your team is hooked. Every plan includes unlimited viewers.</p>
+        </div>
+        <div class="billing reveal">
+          <label id="lblMonthly" class="is-active" for="billingSwitch">Monthly</label>
+          <button class="switch" id="billingSwitch" role="switch" aria-checked="false" aria-label="Bill yearly"></button>
+          <label id="lblYearly" for="billingSwitch">Yearly</label>
+          <span class="save-badge">Save 20%</span>
+        </div>
+        <div class="plans">
+          <article class="plan glass reveal" style="--i:0">
+            <h3>Starter</h3><p class="desc">For individuals exploring their data.</p>
+            <div class="price"><b data-monthly="0" data-yearly="0">$0</b><span>/ month</span></div>
+            <p class="price-note" data-note-monthly="Free forever" data-note-yearly="Free forever">Free forever</p>
+            <ul>
+              <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>2 data sources</li>
+              <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>100 AI questions / month</li>
+              <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>3 dashboards</li>
+              <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>Community support</li>
+            </ul>
+            <a href="#signup" class="btn btn-ghost">Get started free</a>
+          </article>
+          <article class="plan popular reveal" style="--i:1">
+            <span class="tag">Most popular</span>
+            <h3>Pro</h3><p class="desc">For teams that run on data every day.</p>
+            <div class="price"><b data-monthly="39" data-yearly="31">$39</b><span>/ user / month</span></div>
+            <p class="price-note" data-note-monthly="Billed monthly" data-note-yearly="$372 billed yearly — save $96">Billed monthly</p>
+            <ul>
+              <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>Unlimited data sources</li>
+              <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>Unlimited AI questions</li>
+              <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>Forecasts and anomaly alerts</li>
+              <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>Slack and email digests</li>
+              <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>Priority support</li>
+            </ul>
+            <a href="#signup" class="btn btn-primary magnetic">Start 14-day trial</a>
+          </article>
+          <article class="plan glass reveal" style="--i:2">
+            <h3>Enterprise</h3><p class="desc">For organisations with advanced security needs.</p>
+            <div class="price"><b data-monthly="79" data-yearly="63">$79</b><span>/ user / month</span></div>
+            <p class="price-note" data-note-monthly="Volume discounts available" data-note-yearly="$756 billed yearly — save $192">Volume discounts available</p>
+            <ul>
+              <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>Everything in Pro</li>
+              <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>SSO / SAML and SCIM</li>
+              <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>Row-level security and audit logs</li>
+              <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>Dedicated success manager</li>
+              <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>99.99% uptime SLA</li>
+            </ul>
+            <a href="#signup" class="btn btn-ghost">Talk to sales</a>
+          </article>
+        </div>
+
+        <!-- Comparison table with sticky header -->
+        <div class="table-wrap reveal" role="region" aria-label="Plan comparison" tabindex="0">
+          <table class="compare">
+            <thead><tr><th scope="col">Compare plans</th><th scope="col">Starter</th><th scope="col">Pro</th><th scope="col">Enterprise</th></tr></thead>
+            <tbody>
+              <tr class="group"><td colspan="4">Analytics</td></tr>
+              <tr><td>Data sources</td><td>2</td><td>Unlimited</td><td>Unlimited</td></tr>
+              <tr><td>AI questions</td><td>100 / mo</td><td>Unlimited</td><td>Unlimited</td></tr>
+              <tr><td>Dashboards</td><td>3</td><td>Unlimited</td><td>Unlimited</td></tr>
+              <tr><td>Forecasting</td><td class="no">—</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+              <tr><td>Anomaly alerts</td><td class="no">—</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+              <tr class="group"><td colspan="4">Collaboration</td></tr>
+              <tr><td>Unlimited viewers</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+              <tr><td>Slack and email digests</td><td class="no">—</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+              <tr><td>Custom branding</td><td class="no">—</td><td class="no">—</td><td class="yes">✓</td></tr>
+              <tr class="group"><td colspan="4">Security and support</td></tr>
+              <tr><td>SSO / SAML</td><td class="no">—</td><td class="no">—</td><td class="yes">✓</td></tr>
+              <tr><td>Audit logs</td><td class="no">—</td><td>30 days</td><td>Unlimited</td></tr>
+              <tr><td>Support</td><td>Community</td><td>Priority</td><td>Dedicated manager</td></tr>
+              <tr><td>Uptime SLA</td><td class="no">—</td><td>99.9%</td><td>99.99%</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= FAQ ======================= -->
+    <section class="section cv" id="faq" aria-labelledby="faq-title">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow reveal">FAQ</span>
+          <h2 class="h2 words" id="faq-title" data-split>Questions, <span class="soap-text">answered</span></h2>
+        </div>
+        <div class="faq" id="faqList">
+          <div class="faq-item glass reveal" style="--i:0"><button class="faq-q" aria-expanded="false" aria-controls="fa1" id="fq1">Do I need to know SQL to use Lumen?<span class="plus" aria-hidden="true"></span></button><div class="faq-a" id="fa1" role="region" aria-labelledby="fq1"><div><p>No. You ask questions in plain English and Lumen writes, runs and explains the query for you. Analysts can always open and edit the generated SQL.</p></div></div></div>
+          <div class="faq-item glass reveal" style="--i:1"><button class="faq-q" aria-expanded="false" aria-controls="fa2" id="fq2">How long does setup take?<span class="plus" aria-hidden="true"></span></button><div class="faq-a" id="fa2" role="region" aria-labelledby="fq2"><div><p>Most teams connect their first source and get answers in under ten minutes. No engineering ticket required.</p></div></div></div>
+          <div class="faq-item glass reveal" style="--i:2"><button class="faq-q" aria-expanded="false" aria-controls="fa3" id="fq3">Is my data used to train AI models?<span class="plus" aria-hidden="true"></span></button><div class="faq-a" id="fa3" role="region" aria-labelledby="fq3"><div><p>Never. Your data stays in your workspace, is encrypted at rest and in transit, and is never used to train shared models.</p></div></div></div>
+          <div class="faq-item glass reveal" style="--i:3"><button class="faq-q" aria-expanded="false" aria-controls="fa4" id="fq4">Can I cancel anytime?<span class="plus" aria-hidden="true"></span></button><div class="faq-a" id="fa4" role="region" aria-labelledby="fq4"><div><p>Yes. Plans are month-to-month or yearly, and you can downgrade or cancel from settings in two clicks.</p></div></div></div>
+          <div class="faq-item glass reveal" style="--i:4"><button class="faq-q" aria-expanded="false" aria-controls="fa5" id="fq5">Do you offer discounts for startups and nonprofits?<span class="plus" aria-hidden="true"></span></button><div class="faq-a" id="fa5" role="region" aria-labelledby="fq5"><div><p>Yes. Eligible startups and registered nonprofits get 50% off Pro for the first year.</p></div></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= FINAL CTA ======================= -->
+    <section class="section" id="signup" aria-labelledby="cta-title" style="z-index:2">
+      <div class="container">
+        <div class="final glass reveal">
+          <span class="eyebrow">Start today</span>
+          <h2 class="h2" id="cta-title" style="margin-top:1rem">Your data has answers. <span class="soap-text">Start asking.</span></h2>
+          <p class="lead" style="margin:1rem auto 0;max-width:560px">Join 4,000+ teams making faster, better-explained decisions. Free for 14 days, no credit card required.</p>
+          <form class="signup" id="signupForm" novalidate>
+            <div class="field">
+              <label for="email" class="sr-only">Work email</label>
+              <input class="input" id="email" name="email" type="email" placeholder="you@company.com" autocomplete="email" aria-describedby="formMsg" required />
+            </div>
+            <button class="btn btn-primary magnetic" type="submit" id="signupBtn">
+              <span class="btn-label">Get early access</span>
+              <svg class="check-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg>
+            </button>
+          </form>
+          <p class="form-msg" id="formMsg" role="status" aria-live="polite"></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ======================= FOOTER ======================= -->
+  <footer>
+    <div class="container">
+      <div class="foot-grid">
+        <div>
+          <a href="#top" class="logo"><span class="logo-mark" aria-hidden="true"></span>Lumen</a>
+          <p style="color:var(--muted);margin-top:1rem;font-size:.94rem;max-width:320px">The AI analytics platform that turns raw data into explained, actionable decisions for every team.</p>
+          <div class="socials">
+            <a class="social" href="#top" aria-label="Lumen on X"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.8 3h3.3l-7.2 8.2L22.4 21h-6.6l-5.2-6.8L4.6 21H1.3l7.7-8.8L1 3h6.8l4.7 6.2L17.8 3zm-1.2 16h1.8L7.5 4.9H5.6L16.6 19z"/></svg></a>
+            <a class="social" href="#top" aria-label="Lumen on LinkedIn"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 110 5 2.5 2.5 0 010-5zM3 9.5h4v11H3zM9.5 9.5h3.8v1.6h.1c.5-1 1.8-2 3.8-2 4 0 4.8 2.6 4.8 6v5.4h-4v-4.8c0-1.2 0-2.6-1.6-2.6s-1.9 1.2-1.9 2.5v4.9h-4z"/></svg></a>
+            <a class="social" href="#top" aria-label="Lumen on GitHub"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 00-3.2 19.5c.5.1.7-.2.7-.5v-1.7c-2.8.6-3.4-1.3-3.4-1.3-.5-1.1-1.1-1.4-1.1-1.4-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.5 2.4 1.1 2.9.8.1-.7.4-1.1.6-1.3-2.2-.3-4.6-1.1-4.6-5 0-1.1.4-2 1-2.7-.1-.3-.4-1.3.1-2.7 0 0 .8-.3 2.8 1a9.6 9.6 0 015 0c1.9-1.3 2.8-1 2.8-1 .5 1.4.2 2.4.1 2.7.6.7 1 1.6 1 2.7 0 3.9-2.4 4.7-4.6 5 .4.3.7.9.7 1.9V21c0 .3.2.6.7.5A10 10 0 0012 2z"/></svg></a>
+            <a class="social" href="#top" aria-label="Lumen on YouTube"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23 7.2a3 3 0 00-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 001 7.2 31 31 0 00.5 12a31 31 0 00.5 4.8 3 3 0 002.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 002.1-2.1 31 31 0 00.5-4.8 31 31 0 00-.5-4.8zM9.8 15.1V8.9l5.4 3.1-5.4 3.1z"/></svg></a>
+          </div>
+        </div>
+        <div>
+          <h4>Product</h4>
+          <ul><li><a class="foot-link" href="#features">Features</a></li><li><a class="foot-link" href="#integrations">Integrations</a></li><li><a class="foot-link" href="#pricing">Pricing</a></li><li><a class="foot-link" href="#product">Product tour</a></li></ul>
+        </div>
+        <div>
+          <h4>Company</h4>
+          <ul><li><a class="foot-link" href="#testimonials">Customers</a></li><li><a class="foot-link" href="#about">About</a></li><li><a class="foot-link" href="#careers">Careers</a></li><li><a class="foot-link" href="#faq">FAQ</a></li></ul>
+        </div>
+        <div>
+          <h4>Contact</h4>
+          <ul class="contact">
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M3 7l9 6 9-6"/></svg><a class="foot-link" href="mailto:hello@lumen-analytics.com">hello@lumen-analytics.com</a></li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2"/></svg><a class="foot-link" href="tel:+14155550142">+1 (415) 555-0142</a></li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 21s-7-6.2-7-11a7 7 0 0114 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg><span>548 Market St, Suite 300<br />San Francisco, CA 94104</span></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Newsletter</h4>
+          <p style="color:var(--muted);font-size:.9rem">One email a month with data tips and product news. No spam.</p>
+          <form class="mini-form" id="newsForm" novalidate>
+            <label for="newsEmail" class="sr-only">Email for newsletter</label>
+            <input class="input" id="newsEmail" type="email" placeholder="Your email" autocomplete="email" required />
+            <button class="btn btn-primary btn-sm" type="submit">Join</button>
+          </form>
+        </div>
+      </div>
+      <div class="copyright">
+        <span>© <span id="year">2026</span> Lumen Analytics, Inc. All rights reserved.</span>
+        <span style="display:flex;gap:1.2rem;flex-wrap:wrap"><a class="foot-link" href="#privacy">Privacy</a><a class="foot-link" href="#terms">Terms</a><a class="foot-link" href="#security">Security</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to top with scroll progress ring -->
+  <button class="to-top" id="toTop" aria-label="Back to top">
+    <svg class="ring" viewBox="0 0 54 54" aria-hidden="true"><circle cx="27" cy="27" r="24" fill="none" stroke="var(--border)" stroke-width="3"/><circle class="prog" cx="27" cy="27" r="24" fill="none" stroke="url(#sl)" stroke-width="3" stroke-linecap="round"/></svg>
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"/></svg>
+  </button>
+
+  <!-- Cookie consent -->
+  <div class="cookie glass" id="cookie" role="dialog" aria-live="polite" aria-label="Cookie consent">
+    <p><strong style="color:var(--text)">🍪 We use cookies</strong> to improve your experience and measure what works. You can change this anytime.</p>
+    <div class="row"><button class="btn btn-primary btn-sm" id="cookieAccept">Accept all</button><button class="btn btn-ghost btn-sm" id="cookieDecline">Only essential</button></div>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast glass" id="toast" role="status" aria-live="polite"><span class="ic" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M5 12l5 5 9-10"/></svg></span><span id="toastText"></span></div>
+
+  <!-- ============================================================
+       SCRIPTS (deferred-style: at the end of body, after the DOM)
+       ============================================================ -->
+  <script>
+  (function () {
+    'use strict';
+    var $ = function (s, c) { return (c || document).querySelector(s); };
+    var $$ = function (s, c) { return Array.prototype.slice.call((c || document).querySelectorAll(s)); };
+    var root = document.documentElement;
+    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+    var store = {
+      get: function (k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
+      set: function (k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+    };
+
+    /* ---------- 1. Loader: hide in < 1s, then trigger hero intro ---------- */
+    function finishLoading() {
+      var l = $('#loader');
+      if (l) l.classList.add('is-done');
+      document.body.classList.add('is-loaded');
+    }
+    setTimeout(finishLoading, reduceMotion ? 0 : 650);
+
+    /* ---------- 2. Theme toggle with View Transitions circular reveal ---------- */
+    var themeBtn = $('#themeToggle');
+    function applyTheme(t) {
+      root.setAttribute('data-theme', t);
+      store.set('lumen-theme', t);
+      themeBtn.setAttribute('aria-label', t === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+    }
+    applyTheme(root.getAttribute('data-theme') || 'dark');
+    themeBtn.addEventListener('click', function (e) {
+      var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      // Fallback: browsers without the View Transitions API just cross-fade via CSS transitions
+      if (!document.startViewTransition || reduceMotion) { applyTheme(next); return; }
+      var r = themeBtn.getBoundingClientRect();
+      var x = r.left + r.width / 2, y = r.top + r.height / 2;
+      var radius = Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y));
+      var vt = document.startViewTransition(function () { applyTheme(next); });
+      vt.ready.then(function () {
+        root.animate(
+          { clipPath: ['circle(0px at ' + x + 'px ' + y + 'px)', 'circle(' + radius + 'px at ' + x + 'px ' + y + 'px)'] },
+          { duration: 650, easing: 'cubic-bezier(0.22, 1, 0.36, 1)', pseudoElement: '::view-transition-new(root)' }
+        );
+      }).catch(function () {});
+    });
+
+    /* ---------- 3. Announcement bar ---------- */
+    var announce = $('#announce');
+    if (store.get('lumen-announce') === 'closed') announce.classList.add('is-hidden');
+    $('#announceClose').addEventListener('click', function () {
+      announce.classList.add('is-hidden'); store.set('lumen-announce', 'closed');
+    });
+
+    /* ---------- 4. Scroll: navbar shrink/hide, progress bar, back-to-top ring (rAF-throttled) ---------- */
+    var navWrap = $('#navWrap'), progress = $('#progress'), toTop = $('#toTop');
+    var lastY = window.scrollY, ticking = false;
+    function onScroll() {
+      var y = window.scrollY;
+      var max = document.documentElement.scrollHeight - innerHeight;
+      var p = max > 0 ? Math.min(1, y / max) : 0;
+      progress.style.setProperty('--p', p.toFixed(4));
+      toTop.style.setProperty('--p', p.toFixed(4));
+      toTop.classList.toggle('is-visible', y > 600);
+      navWrap.classList.toggle('is-scrolled', y > 20);
+      var menuOpen = document.body.classList.contains('no-scroll');
+      if (!menuOpen) navWrap.classList.toggle('is-hidden', y > lastY && y > 240);
+      lastY = y;
+      drawSteps();
+      ticking = false;
+    }
+    window.addEventListener('scroll', function () {
+      if (!ticking) { requestAnimationFrame(onScroll); ticking = true; }
+    }, { passive: true });
+    toTop.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' }); });
+
+    /* ---------- 5. Mobile menu: hamburger -> X, staggered links, body scroll lock ---------- */
+    var burger = $('#burger'), menu = $('#mobileMenu');
+    function setMenu(open) {
+      burger.setAttribute('aria-expanded', String(open));
+      burger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+      menu.classList.toggle('is-open', open);
+      menu.setAttribute('aria-hidden', String(!open));
+      document.body.classList.toggle('no-scroll', open);
+      if (open) { navWrap.classList.remove('is-hidden'); var f = $('a', menu); if (f) setTimeout(function () { f.focus(); }, 300); }
+    }
+    burger.addEventListener('click', function () { setMenu(burger.getAttribute('aria-expanded') !== 'true'); });
+    $$('a', menu).forEach(function (a) { a.addEventListener('click', function () { setMenu(false); }); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && menu.classList.contains('is-open')) { setMenu(false); burger.focus(); } });
+    window.addEventListener('resize', debounce(function () { if (innerWidth >= 1024) setMenu(false); }, 150));
+
+    /* ---------- 6. Word splitter for headline reveals ---------- */
+    $$('[data-split]').forEach(function (el) {
+      var i = 0;
+      (function walk(node) {
+        Array.prototype.slice.call(node.childNodes).forEach(function (child) {
+          if (child.nodeType === 3) {
+            var frag = document.createDocumentFragment();
+            child.textContent.split(/(\s+)/).forEach(function (part) {
+              if (!part) return;
+              if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(part)); return; }
+              var w = document.createElement('span'); w.className = 'w';
+              var inner = document.createElement('span'); inner.style.setProperty('--i', i++); inner.textContent = part;
+              w.appendChild(inner); frag.appendChild(w);
+            });
+            node.replaceChild(frag, child);
+          } else if (child.nodeType === 1) {
+            if (child.classList.contains('soap-text')) {
+              // keep gradient text intact: wrap the whole span as one animated unit per word
+              var words = child.textContent.split(' ');
+              child.textContent = '';
+              words.forEach(function (wd, k) {
+                var w = document.createElement('span'); w.className = 'w';
+                var inner = document.createElement('span'); inner.className = 'soap-text'; inner.style.setProperty('--i', i++); inner.textContent = wd;
+                w.appendChild(inner); child.appendChild(w);
+                if (k < words.length - 1) child.appendChild(document.createTextNode(' '));
+              });
+              child.classList.remove('soap-text');
+            } else walk(child);
+          }
+        });
+      })(el);
+    });
+
+    /* ---------- 7. ONE shared IntersectionObserver for reveals, counters, scramble ---------- */
+    var counted = new WeakSet();
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        var el = entry.target;
+        el.classList.add('is-visible');
+        if (el.hasAttribute('data-count') && !counted.has(el)) { counted.add(el); countUp(el); }
+        if (el.id === 'scramble') scramble(el);
+        io.unobserve(el); // reveal once, then stop observing for performance
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.15 });
+    $$('.reveal, .words, [data-count], #scramble').forEach(function (el) { io.observe(el); });
+
+    /* ---------- 8. Animated counters ---------- */
+    function countUp(el) {
+      var target = parseFloat(el.getAttribute('data-count'));
+      var dec = parseInt(el.getAttribute('data-decimals') || '0', 10);
+      var suffix = el.getAttribute('data-suffix') || '';
+      var dur = reduceMotion ? 1 : 1800, start = performance.now();
+      function fmt(v) { return v.toLocaleString('en-US', { minimumFractionDigits: dec, maximumFractionDigits: dec }) + suffix; }
+      (function tick(now) {
+        var t = Math.min(1, (now - start) / dur);
+        var eased = 1 - Math.pow(1 - t, 4);
+        el.textContent = fmt(target * eased);
+        if (t < 1) requestAnimationFrame(tick);
+      })(start);
+    }
+
+    /* ---------- 9. Scramble / decode text effect ---------- */
+    function scramble(el) {
+      var final = el.getAttribute('data-text');
+      if (reduceMotion) { el.textContent = final; return; }
+      var chars = '!<>-_\\/[]{}=+*^?#ABCDEFabcdef0123456789';
+      var frame = 0, total = 38;
+      (function step() {
+        var out = '';
+        for (var i = 0; i < final.length; i++) {
+          var revealAt = (i / final.length) * total;
+          if (final[i] === ' ' || frame >= revealAt) out += final[i];
+          else out += chars[Math.floor(Math.random() * chars.length)];
+        }
+        el.textContent = out;
+        if (frame++ < total) requestAnimationFrame(step); else el.textContent = final;
+      })();
+    }
+
+    /* ---------- 10. Hero keyword rotator with typing feel ---------- */
+    var rot = $('#rotator');
+    if (rot && !reduceMotion) {
+      var items = $$('span', rot), idx = 0;
+      setInterval(function () {
+        items[idx].classList.remove('is-active');
+        idx = (idx + 1) % items.length;
+        items[idx].classList.add('is-active');
+      }, 2400);
+    }
+
+    /* ---------- 11. Typing demo inside the "Ask in plain English" card ---------- */
+    var demo = $('#typingDemo');
+    var questions = ['Why did revenue dip in the UK last week?', 'Which plan has the best 90-day retention?', 'Forecast signups for December by channel'];
+    if (demo) {
+      var qi = 0, ci = 0, deleting = false;
+      (function type() {
+        var q = questions[qi];
+        demo.textContent = '› ' + q.slice(0, ci);
+        if (reduceMotion) { demo.textContent = '› ' + q; return; }
+        if (!deleting && ci < q.length) { ci++; setTimeout(type, 45); }
+        else if (!deleting) { deleting = true; setTimeout(type, 1800); }
+        else if (ci > 0) { ci--; setTimeout(type, 18); }
+        else { deleting = false; qi = (qi + 1) % questions.length; setTimeout(type, 300); }
+      })();
+    }
+
+    /* ---------- 12. How-it-works SVG line drawn with scroll progress ---------- */
+    var stepsEl = $('#steps'), stepsPath = $('#stepsPath');
+    function drawSteps() {
+      if (!stepsEl || !stepsPath) return;
+      var r = stepsEl.getBoundingClientRect();
+      var p = (innerHeight * 0.85 - r.top) / (r.height + innerHeight * 0.35);
+      p = Math.max(0, Math.min(1, p));
+      stepsPath.style.strokeDashoffset = String(1 - p);
+    }
+
+    /* ---------- 13. Custom cursor: dot + lerp-smoothed ring (desktop only) ---------- */
+    if (finePointer && !reduceMotion) {
+      var dot = $('#cursorDot'), ring = $('#cursorRing');
+      var mx = -100, my = -100, rx = -100, ry = -100;
+      window.addEventListener('pointermove', function (e) {
+        mx = e.clientX; my = e.clientY;
+        dot.style.transform = 'translate3d(' + mx + 'px,' + my + 'px,0)';
+      }, { passive: true });
+      (function loop() {
+        rx += (mx - rx) * 0.16; ry += (my - ry) * 0.16; // linear interpolation smoothing
+        ring.style.transform = 'translate3d(' + rx + 'px,' + ry + 'px,0)';
+        requestAnimationFrame(loop);
+      })();
+      document.addEventListener('pointerover', function (e) {
+        var t = e.target;
+        ring.classList.toggle('is-view', !!t.closest('[data-cursor="view"]'));
+        ring.classList.toggle('is-hover', !!t.closest('a, button, input, [role="tab"]'));
+      });
+    }
+
+    /* ---------- 14. Spotlight + 3D tilt on cards ---------- */
+    $$('.spot').forEach(function (card) {
+      card.addEventListener('pointermove', function (e) {
+        var r = card.getBoundingClientRect();
+        card.style.setProperty('--x', (e.clientX - r.left) + 'px');
+        card.style.setProperty('--y', (e.clientY - r.top) + 'px');
+      });
+    });
+    if (finePointer && !reduceMotion) {
+      $$('[data-tilt]').forEach(function (el) {
+        var base = el.classList.contains('mock-card') ? 'rotateX(6deg) rotateY(-10deg)' : '';
+        el.addEventListener('pointermove', function (e) {
+          var r = el.getBoundingClientRect();
+          var px = (e.clientX - r.left) / r.width - 0.5, py = (e.clientY - r.top) / r.height - 0.5;
+          el.style.transform = 'perspective(1000px) rotateX(' + (-py * 8).toFixed(2) + 'deg) rotateY(' + (px * 10).toFixed(2) + 'deg) translateZ(0)';
+        });
+        el.addEventListener('pointerleave', function () { el.style.transform = base; });
+      });
+
+      /* Magnetic buttons */
+      $$('.magnetic').forEach(function (b) {
+        b.addEventListener('pointermove', function (e) {
+          var r = b.getBoundingClientRect();
+          var x = e.clientX - r.left - r.width / 2, y = e.clientY - r.top - r.height / 2;
+          b.style.transform = 'translate(' + x * 0.25 + 'px,' + y * 0.35 + 'px)';
+        });
+        b.addEventListener('pointerleave', function () { b.style.transform = ''; });
+      });
+    }
+
+    /* ---------- 15. Ripple on click for every button ---------- */
+    document.addEventListener('click', function (e) {
+      var b = e.target.closest('.btn, .tab, .round-btn');
+      if (!b || reduceMotion) return;
+      var r = b.getBoundingClientRect(), size = Math.max(r.width, r.height);
+      var s = document.createElement('span');
+      s.className = 'ripple';
+      s.style.cssText = 'width:' + size + 'px;height:' + size + 'px;left:' + (e.clientX - r.left - size / 2) + 'px;top:' + (e.clientY - r.top - size / 2) + 'px';
+      var host = b.classList.contains('btn-conic') ? b.firstElementChild : b;
+      if (getComputedStyle(host).position === 'static') host.style.position = 'relative';
+      host.style.overflow = 'hidden';
+      host.appendChild(s);
+      setTimeout(function () { s.remove(); }, 700);
+    });
+
+    /* ---------- 16. Tabs (roving tabindex + arrow keys) ---------- */
+    var tabs = $$('[role="tab"]');
+    function selectTab(tab) {
+      tabs.forEach(function (t) {
+        var sel = t === tab;
+        t.setAttribute('aria-selected', String(sel));
+        t.tabIndex = sel ? 0 : -1;
+        var panel = document.getElementById(t.getAttribute('aria-controls'));
+        panel.hidden = !sel;
+        if (sel) { panel.classList.add('is-visible'); panel.classList.remove('is-entering'); void panel.offsetWidth; panel.classList.add('is-entering'); }
+      });
+    }
+    tabs.forEach(function (t, i) {
+      t.addEventListener('click', function () { selectTab(t); });
+      t.addEventListener('keydown', function (e) {
+        var n = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+        if (!n) return;
+        var next = tabs[(i + n + tabs.length) % tabs.length]; selectTab(next); next.focus();
+      });
+    });
+
+    /* ---------- 17. Testimonials slider (native swipe via scroll-snap + buttons + dots) ---------- */
+    var track = $('#slides'), slides = $$('.slide', track), dotsWrap = $('#dots');
+    slides.forEach(function (s, i) {
+      var d = document.createElement('button');
+      d.type = 'button'; d.setAttribute('aria-label', 'Show testimonial ' + (i + 1));
+      d.addEventListener('click', function () { goTo(i); });
+      dotsWrap.appendChild(d);
+    });
+    var dots = $$('button', dotsWrap);
+    function current() {
+      var best = 0, min = Infinity;
+      slides.forEach(function (s, i) { var dlt = Math.abs(s.offsetLeft - track.offsetLeft - track.scrollLeft); if (dlt < min) { min = dlt; best = i; } });
+      return best;
+    }
+    function goTo(i) {
+      i = (i + slides.length) % slides.length;
+      track.scrollTo({ left: slides[i].offsetLeft - track.offsetLeft, behavior: reduceMotion ? 'auto' : 'smooth' });
+    }
+    function syncDots() { var c = current(); dots.forEach(function (d, i) { d.setAttribute('aria-current', String(i === c)); }); }
+    track.addEventListener('scroll', debounce(syncDots, 60), { passive: true });
+    $('#prevSlide').addEventListener('click', function () { goTo(current() - 1); });
+    $('#nextSlide').addEventListener('click', function () {
+      var atEnd = track.scrollLeft + track.clientWidth >= track.scrollWidth - 4;
+      goTo(atEnd ? 0 : current() + 1);
+    });
+    track.addEventListener('keydown', function (e) { if (e.key === 'ArrowRight') goTo(current() + 1); if (e.key === 'ArrowLeft') goTo(current() - 1); });
+    syncDots();
+    var auto, paused = false;
+    var slider = track.parentElement;
+    ['pointerenter', 'focusin', 'touchstart'].forEach(function (ev) { slider.addEventListener(ev, function () { paused = true; }, { passive: true }); });
+    ['pointerleave', 'focusout'].forEach(function (ev) { slider.addEventListener(ev, function () { paused = false; }); });
+    if (!reduceMotion) auto = setInterval(function () { if (!paused && !document.hidden) $('#nextSlide').click(); }, 5500);
+
+    /* ---------- 18. Pricing toggle with animated number roll ---------- */
+    var sw = $('#billingSwitch');
+    function rollNumber(el, to) {
+      var from = parseFloat(el.textContent.replace(/[^0-9.]/g, '')) || 0;
+      var start = performance.now(), dur = reduceMotion ? 1 : 600;
+      (function tick(now) {
+        var t = Math.min(1, (now - start) / dur), e = 1 - Math.pow(1 - t, 3);
+        el.textContent = '$' + Math.round(from + (to - from) * e);
+        if (t < 1) requestAnimationFrame(tick);
+      })(start);
+    }
+    function setBilling(yearly) {
+      sw.setAttribute('aria-checked', String(yearly));
+      $('#lblMonthly').classList.toggle('is-active', !yearly);
+      $('#lblYearly').classList.toggle('is-active', yearly);
+      $$('.price b').forEach(function (b) { rollNumber(b, parseFloat(b.getAttribute(yearly ? 'data-yearly' : 'data-monthly'))); });
+      $$('.price-note').forEach(function (n) { n.textContent = n.getAttribute(yearly ? 'data-note-yearly' : 'data-note-monthly'); });
+    }
+    sw.addEventListener('click', function () { setBilling(sw.getAttribute('aria-checked') !== 'true'); });
+    $('#lblMonthly').addEventListener('click', function (e) { e.preventDefault(); setBilling(false); });
+    $('#lblYearly').addEventListener('click', function (e) { e.preventDefault(); setBilling(true); });
+
+    /* ---------- 19. FAQ accordion: one open at a time ---------- */
+    var faqBtns = $$('.faq-q');
+    faqBtns.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var open = btn.getAttribute('aria-expanded') === 'true';
+        faqBtns.forEach(function (b) { b.setAttribute('aria-expanded', 'false'); b.closest('.faq-item').classList.remove('is-open'); });
+        if (!open) { btn.setAttribute('aria-expanded', 'true'); btn.closest('.faq-item').classList.add('is-open'); }
+      });
+    });
+
+    /* ---------- 20. Toast ---------- */
+    var toast = $('#toast'), toastTimer;
+    function showToast(msg) {
+      $('#toastText').textContent = msg;
+      toast.classList.add('is-visible');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(function () { toast.classList.remove('is-visible'); }, 3200);
+    }
+
+    /* ---------- 21. Email signup validation + success check ---------- */
+    var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+    var form = $('#signupForm'), email = $('#email'), msg = $('#formMsg'), sBtn = $('#signupBtn');
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var v = email.value.trim();
+      if (!EMAIL_RE.test(v)) {
+        email.setAttribute('aria-invalid', 'true');
+        msg.className = 'form-msg err';
+        msg.textContent = v ? 'That email doesn’t look right — try name@company.com.' : 'Please enter your work email.';
+        email.focus();
+        setTimeout(function () { email.removeAttribute('aria-invalid'); }, 450);
+        return;
+      }
+      email.removeAttribute('aria-invalid');
+      sBtn.classList.add('is-success'); sBtn.setAttribute('aria-label', 'Signed up');
+      msg.className = 'form-msg ok';
+      msg.textContent = 'You’re on the list! Check ' + v + ' for your invite.';
+      showToast('Welcome aboard — your trial invite is on its way.');
+      form.reset();
+      setTimeout(function () { sBtn.classList.remove('is-success'); sBtn.removeAttribute('aria-label'); }, 3500);
+    });
+    $('#newsForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      var inp = $('#newsEmail');
+      if (!EMAIL_RE.test(inp.value.trim())) { inp.setAttribute('aria-invalid', 'true'); showToast('Please enter a valid email address.'); setTimeout(function () { inp.removeAttribute('aria-invalid'); }, 450); return; }
+      inp.value = ''; showToast('Subscribed! See you in your inbox next month.');
+    });
+
+    /* ---------- 22. Cookie consent ---------- */
+    var cookie = $('#cookie');
+    if (!store.get('lumen-cookies')) setTimeout(function () { cookie.classList.add('is-visible'); }, 1600);
+    function closeCookie(v) { store.set('lumen-cookies', v); cookie.classList.remove('is-visible'); showToast(v === 'all' ? 'Thanks! Preferences saved.' : 'Only essential cookies will be used.'); }
+    $('#cookieAccept').addEventListener('click', function () { closeCookie('all'); });
+    $('#cookieDecline').addEventListener('click', function () { closeCookie('essential'); });
+
+    /* ---------- 23. Anchor handling: 404-style fallback for missing sections ---------- */
+    document.addEventListener('click', function (e) {
+      var a = e.target.closest('a[href^="#"]');
+      if (!a) return;
+      var id = a.getAttribute('href').slice(1);
+      if (!id) return;
+      if (!document.getElementById(id)) { e.preventDefault(); showToast('That page is coming soon — we’re still polishing it.'); }
+    });
+
+    /* ---------- 24. Page transition veil for links to other pages ---------- */
+    document.addEventListener('click', function (e) {
+      var a = e.target.closest('a[href]');
+      if (!a || a.target === '_blank' || e.metaKey || e.ctrlKey) return;
+      var href = a.getAttribute('href');
+      if (!href || href[0] === '#' || /^(mailto|tel):/.test(href)) return;
+      if (reduceMotion) return;
+      e.preventDefault();
+      $('#veil').classList.add('is-active');
+      setTimeout(function () { location.href = href; }, 550);
+    });
+    window.addEventListener('pageshow', function () { $('#veil').classList.remove('is-active'); });
+
+    /* ---------- Helpers + init ---------- */
+    function debounce(fn, ms) { var t; return function () { var a = arguments, c = this; clearTimeout(t); t = setTimeout(function () { fn.apply(c, a); }, ms); }; }
+    $('#year').textContent = new Date().getFullYear();
+    onScroll();
+  })();
+  </script>
+</body>
+</html>
